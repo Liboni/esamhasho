@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+    	<div class="sidebar-wrapper">
+            <ul class="nav">
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/dashboard/statistics']">
+                        <i class="fa fa-dashboard"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/dashboard/user']">
+                        <i class="fa fa-user"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/dashboard/product-editor/list']">
+                        <i class="fa fa-navicon"></i>
+                        <p>Product Editor</p>
+                    </a>
+                </li>    
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/dashboard/catergory']">
+                        <i class="fa fa-filter"></i>
+                        <p>Product Catergory</p>
+                    </a>
+                </li>             
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/dashboard/blog-editor']">
+                        <i class="fa fa-list"></i>
+                        <p>Blog Editor</p>
+                    </a>
+                </li>               
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/dashboard/notification']">
+                        <i class="fa fa-bell"></i>
+                        <p>Notifications</p>
+                    </a>
+                </li>			
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
