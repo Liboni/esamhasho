@@ -1,3 +1,90 @@
-<p>
-  product-details works!
-</p>
+<div class="features_items">
+    <h2 class="title text-center"></h2>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <div class="clearfix">
+                            <ul class="slides">
+                                <ng-container *ngFor="let media of productMedias">
+                                    <li [class.slideInImage]="selectedImage == media.Id">
+                                        <img src="{{media.MediaSource}}" alt="" />
+                                    </li>
+                                </ng-container>
+                            </ul>
+                            <ul class="thumbnails">
+                                <ng-container *ngFor="let media of productMedias">
+                                    <li>
+                                        <a (click)="selectImage(media.Id)">
+                                            <img src="{{media.MediaSource}}" />
+                                        </a>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                     
+                        <h2>{{product.Name}}</h2>
+                        
+                        <div class="list-details">
+                         <h3>
+                                <span class="fa fa-money"> Price : </span>
+                                $ {{product.Price}}/{{product.Per}}</h3>
+                        <h4>
+                            <span class="fa fa-user"> Seller : </span> {{userDetails.FirstName}} {{userDetails.LastName}}</h4>
+                        <h4>
+                            <span class="fa fa-phone"> Contact Number : </span> {{userDetails.PhoneNumber}}</h4>
+                        <h4>
+                            <span class="fa fa-envelope"> Email Address : </span> {{userDetails.Email}}</h4>
+                        <h4>
+                            <span class="fa fa-flag"> Country : </span> {{userDetails.Country}}</h4>
+                        <h4>
+                            <span class="fa fa-location-arrow"> City : </span> {{userDetails.City}}</h4>
+                        <h4>
+                            <span class="fa fa-address-card"> Address : </span> {{userDetails.Address}}</h4>
+                            </div>
+                        <p class="description">
+                            <span class="fa fa-sticky-note"> Description : </span>
+                            {{product.Description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <div class="container">
+        <div class="row" style="width: 100%;">
+            <div class="col-sm-12 space">
+                <h3>Questions / Comments: </h3>
+                <div class="form-group">
+                    <input ngModel  #name="ngModel" name="Name" class="form-control" placeholder="Name"/>
+                </div>
+                <div class="form-group">
+                    <input ngModel #phone="ngModel" class="form-control" placeholder="Phone"/>
+              </div>
+              <div class="form-group">
+                <input ngModel #email="ngModel" type="email" class="form-control" placeholder="Email"/>
+          </div>
+                <div class="form-group">
+                <textarea ngModel #message="ngModel" class="form-control" placeholder="Enter your message here"></textarea>
+            </div>
+                <button (click)="commentProduct(message.value,phone.value,name.value,email.value)" class="btn btn-success">Post</button>
+            </div>
+            <ng-container *ngFor="let notification of notifications" >
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{notification.Name}}</strong>
+                            <span class="text-muted">commented {{notification.DateCreated}}</span>
+                        </div>
+                        <div class="panel-body">
+                            {{notification.Message}}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>  
+        </div>
+    </div>
+</div>

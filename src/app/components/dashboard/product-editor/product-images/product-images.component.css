@@ -1,0 +1,22 @@
+.content{
+  background-color: white;
+  width: 95%;
+margin-left: 2em;
+}
+
+.btn {
+  margin: 2em;
+}
+
+.header{
+  border-bottom: 1px solid #ddd;
+margin-bottom: 1em;
+}
+
+#filesInput {
+  opacity: 0;
+  position: absolute;
+}
+img{
+  height: 16em;
+}

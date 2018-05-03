@@ -1,183 +1,180 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-      <div class="navbar-header">
-          <button type="button" class="navbar-toggle">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar bar1"></span>
-              <span class="icon-bar bar2"></span>
-              <span class="icon-bar bar3"></span>
-          </button>
-          <a class="navbar-brand" href="javascript:void(0)">Notifications</a>
-      </div>
-      <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-              <li>
-                  <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                      <i class="ti-panel"></i>
-      <p>Stats</p>
-                  </a>
-              </li>
-              <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="ti-bell"></i>
-                          <p class="notification">5</p>
-        <p>Notifications</p>
-        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a href="javascript:void(0)">Notification 1</a></li>
-                      <li><a href="javascript:void(0)">Notification 2</a></li>
-                      <li><a href="javascript:void(0)">Notification 3</a></li>
-                      <li><a href="javascript:void(0)">Notification 4</a></li>
-                      <li><a href="javascript:void(0)">Another notification</a></li>
-                    </ul>
-              </li> 
-          </ul>
-
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)">Notifications</a>
+        </div>       
+    </div>
 </nav>
-
-
-
-
-
-
 
 <div class="container">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2">
+            <div class="col-sm-9 col-md-10">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Mail <span class="caret"></span>
+                        Mail
+                        <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="javascript:void(0)">Mail</a></li>
-                        <li><a href="javascript:void(0)">Contacts</a></li>
-                        <li><a href="javascript:void(0)">Tasks</a></li>
+                    <ul class="dropdown-menu" role="menu">                      
+                        <li>
+                            <a href="javascript:void(0)">Contacts</a>
+                        </li>                       
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-9 col-md-10">
-                <!-- Split button -->
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default">
-                        <div class="checkbox" style="margin: 0;">
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                        </div>
-                    </button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="javascript:void(0)">All</a></li>
-                        <li><a href="javascript:void(0)">None</a></li>
-                        <li><a href="javascript:void(0)">Read</a></li>
-                        <li><a href="javascript:void(0)">Unread</a></li>                      
-                    </ul>
-                </div>
-                <button type="button" class="btn btn-default" data-toggle="tooltip" title="Refresh">
-                       <span class="fa fa-refresh"></span>   </button>
-                <!-- Single button -->
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        More <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="javascript:void(0)">Mark all as read</a></li>
-                        <li class="divider"></li>
-                      
-                    </ul>
-                </div>
-                <div class="pull-right">
-                    <span class="text-muted"><b>1</b>–<b>50</b> of <b>277</b></span>
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-default">
-                            <span class="fa fa-chevron-left"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <span class="fa fa-chevron-right"></span>
-                        </button>
-                    </div>
-                </div>
+            <div class="col-sm-3 col-md-2">                 
+                <div class="search_box pull-right">
+                    <input type="text" [(ngModel)]="search" placeholder="Search"/>
+                </div>                                               
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-3 col-md-2">
-                <a href="javascript:void(0)" class="btn btn-primary  btn-sm btn-block" role="button">COMPOSE</a>
-                <hr>
+            <div class="col-sm-3 col-md-2">             
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="javascript:void(0)"><span class="badge pull-right">42</span> Inbox </a>
-                    </li>
-                    <li><a href="javascript:void(0)">Sent Mail</a></li>
-                    <li><a href="javascript:void(0)"><span class="badge pull-right">3</span>Drafts</a></li>
+                    <li  class="active">
+                        <a href="#inbox"  data-toggle="tab">
+                            <span *ngIf='unreadMessages > 0' class="badge pull-right">{{unreadMessages}}</span> Inbox </a>
+                    </li>  
+                    <li>
+                        <a href="#sent"  data-toggle="tab">
+                            <span class="badge pull-right"></span> Sent </a>
+                    </li>                   
                 </ul>
             </div>
-            <div class="col-sm-9 col-md-10">
+            <div class="tab-content">
+            <div id="inbox" class=" tab-pane fade in active col-sm-9 col-md-10">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home" data-toggle="tab"><span class="fa fa-inbox">
-                    </span>Primary</a></li>
-                    <li><a href="#profile" data-toggle="tab"><span class="fa fa-user"></span>
-                        Blog</a></li>
-                    <li><a href="#messages" data-toggle="tab"><span class="fa fa-tags"></span>
-                        Feedback</a></li>                  
+                    <li class="active">
+                        <a href="#primaryInbox" data-toggle="tab">
+                            <span class="fa fa-inbox">
+                            </span>Primary</a>
+                    </li>
+                    <li>
+                        <a href="#feedbackInbox" data-toggle="tab">
+                            <span class="fa fa-tags"></span>
+                            Feedback</a>
+                    </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane fade in active" id="home">
+                    <div class="tab-pane fade in active" id="primaryInbox">
                         <div class="list-group">
-                            <a href="javascript:void(0)" class="list-group-item">
+                           <ng-container let i; *ngFor="let notification of notifications  | filter:search" >
+                            <a (click)="markAsRead(notification.Id)" *ngIf="notification.NotificationTypeId == 1 &&  notification.FromCustomer" href="javascript:void(0)" [class.read]="notification.IsRead" class="list-group-item">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox">
                                     </label>
                                 </div>
-                                <span class="fa fa-star-empty"></span><span class="name" style="min-width: 120px;
-                                    display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
-                                    class="badge">12:10 AM</span> <span class="pull-right"><span class="fa fa-paperclip">
-                                    </span></span></a><a href="javascript:void(0)" class="list-group-item">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox">
-                                            </label>
-                                        </div>
-                                        <span class="fa fa-star-empty"></span><span class="name" style="min-width: 120px;
-                                            display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                        <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
-                                            class="badge">12:10 AM</span> <span class="pull-right"><span class="fa fa-paperclip">
-                                            </span></span></a><a href="javascript:void(0)" class="list-group-item read">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">
-                                                    </label>
-                                                </div>
-                                                <span class="fa fa-star"></span><span class="name" style="min-width: 120px;
-                                                    display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                                <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
-                                                    class="badge">12:10 AM</span> <span class="pull-right"><span class="fa fa-paperclip">
-                                                    </span></span></a>
+                                <span class="fa fa-star-empty"></span>
+                                <span class="name" style="min-width: 120px;
+                                    display: inline-block;">{{notification.Name}}</span>
+                                <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                <span class="badge">{{notification.DateCreated}}</span>
+                                <span class="pull-right">
+                                    <span class="fa fa-paperclip">
+                                    </span>
+                                </span>                           
+                            </a> 
+                        </ng-container>                                             
                         </div>
                     </div>
-                    <div class="tab-pane fade in" id="profile">
+                    <div class="tab-pane fade in" id="feedbackInbox">
                         <div class="list-group">
-                            <div class="list-group-item">
-                                <span class="text-center">This tab is empty.</span>
-                            </div>
+                          <ng-container *ngFor="let notification of notifications  | filter:search" >
+                            <a  *ngIf="notification.NotificationTypeId == 2 &&  notification.FromCustomer" (click)="markAsRead(notification.Id)" href="javascript:void(0)" class="list-group-item" href="javascript:void(0)"  [class.read]="notification.IsRead" class="list-group-item">
+                               <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">
+                                        </label>
+                                    </div>
+                                    <span class="fa fa-star"></span>
+                                    <span class="name" style="min-width: 120px;
+                                                        display: inline-block;">{{notification.Name}}</span>                                 
+                                    <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                    <span class="badge">{{notification.DateCreated}}</span>
+                                    <span class="pull-right">
+                                        <span class="fa fa-paperclip">
+                                        </span>
+                                    </span>                                   
+                                </a>
+                            </ng-container>
+                            </div>                        
+                    </div>                  
+                </div>
+            </div>
+
+            <div id="sent" class=" tab-pane fade in col-sm-9 col-md-10" >
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#primarySent" data-toggle="tab">
+                            <span class="fa fa-inbox">
+                            </span>Primary</a>
+                    </li>
+                    <li>
+                        <a href="#feedbackSent" data-toggle="tab">
+                            <span class="fa fa-tags"></span>
+                            Feedback</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="primarySent">
+                        <div class="list-group">
+                           <ng-container let i; *ngFor="let notification of notifications  | filter:search" >
+                            <a (click)="markAsRead(notification.Id)" *ngIf="notification.NotificationTypeId == 1 &&  !notification.FromCustomer" href="javascript:void(0)" [class.read]="notification.IsRead" class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                    </label>
+                                </div>
+                                <span class="fa fa-star-empty"></span>
+                                <span class="name" style="min-width: 120px;
+                                    display: inline-block;">{{notification.Name}}</span>
+                                <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                <span class="badge">{{notification.DateCreated}}</span>
+                                <span class="pull-right">
+                                    <span class="fa fa-paperclip">
+                                    </span>
+                                </span>                           
+                            </a> 
+                        </ng-container>                                             
                         </div>
                     </div>
-                    <div class="tab-pane fade in" id="messages">
-                        ...</div>
-                    <div class="tab-pane fade in" id="settings">
-                        This tab is empty.</div>
-                </div>               
+                    <div class="tab-pane fade in" id="feedbackSent">
+                        <div class="list-group">
+                          <ng-container *ngFor="let notification of notifications  | filter:search" >
+                            <a  *ngIf="notification.NotificationTypeId == 2 &&  !notification.FromCustomer" (click)="markAsRead(notification.Id)" href="javascript:void(0)" class="list-group-item" href="javascript:void(0)"  [class.read]="notification.IsRead" class="list-group-item">
+                               <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">
+                                        </label>
+                                    </div>
+                                    <span class="fa fa-star"></span>
+                                    <span class="name" style="min-width: 120px;
+                                                        display: inline-block;">{{notification.Name}}</span>                                 
+                                    <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                    <span class="badge">{{notification.DateCreated}}</span>
+                                    <span class="pull-right">
+                                        <span class="fa fa-paperclip">
+                                        </span>
+                                    </span>                                   
+                                </a>
+                            </ng-container>
+                            </div>                        
+                    </div>                  
+                </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
-    

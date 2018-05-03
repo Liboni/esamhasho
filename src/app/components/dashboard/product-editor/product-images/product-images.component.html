@@ -1,3 +1,31 @@
-<p>
-  product-images works!
-</p>
+<div class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="header">                                           
+                    <button (click)="triggerFile(filesInput)" class="btn btn-md btn-success">Add</button>     
+                    <input  #filesInput id="filesInput" (change)="addMedia()" type="file" accept="image/*">              
+                    </div>
+                    <section>                                         
+                        <div class="col-sm-12">
+                        <div class="features_items">
+                            <div *ngFor="let media of productMedias" class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{media.MediaSource}}" alt="" />
+                                            <a href="javascript:void(0)" (click)="deleteMedia(media)" class="btn btn-default add-to-cart">
+                                                <i class="fa fa-trash-o"></i>Delete</a></div>                 
+                                    </div>
+                                   
+                                </div>
+                            </div>                                                    
+                        </div>  
+                     </div>                       
+              </section>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

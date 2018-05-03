@@ -1,3 +1,126 @@
-<p>
-  catergory works!
-</p>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar bar1"></span>
+              <span class="icon-bar bar2"></span>
+              <span class="icon-bar bar3"></span>
+          </button>
+          <a class="navbar-brand" href="javascript:void(0)">Products Catergory</a>
+      </div>
+      <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li>
+                  <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="ti-panel"></i>
+      <p>Stats</p>
+                  </a>
+              </li>
+              <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                          <i class="ti-bell"></i>
+                          <p class="notification">5</p>
+        <p>Notifications</p>
+        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="javascript:void(0)">Notification 1</a></li>
+                      <li><a href="javascript:void(0)">Notification 2</a></li>
+                      <li><a href="javascript:void(0)">Notification 3</a></li>
+                      <li><a href="javascript:void(0)">Notification 4</a></li>
+                      <li><a href="javascript:void(0)">Another notification</a></li>
+                    </ul>
+              </li>
+ 
+          </ul>
+
+      </div>
+  </div>
+</nav>    
+
+<router-outlet></router-outlet>
+
+
+
+<div class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="header">
+                      <div class="col-sm-9">
+                    <button (click)="toggleAddCatergory(AddCatergoryBtnText)" class="btn btn-md btn-success"> {{AddCatergoryBtnText}}</button>
+                  </div>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+                            <input type="text" [(ngModel)]="search" placeholder="Search"/>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="content table-responsive table-full-width">
+                      <table class="table table-striped">
+                          <thead>
+                            <th>#</th>                          
+                            <th>Name</th>                         
+                            <th>Action</th>
+                          </thead>
+                          <tbody>
+                             <tr *ngFor="let i = index; let item of catergories | paginate: { itemsPerPage:5, currentPage:c } | filter:search">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.Name}}</td>
+                                    <td>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                                  <i class="fa fa-ellipsis-v"></i><b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                            <li (click)="deleteCatergory(item)"><a>Delete</a></li>
+                                        </ul>
+                                      </li>
+                                    </td>
+                              </tr> 
+                        </tbody>
+                      </table>
+                      <pagination-controls (pageChange)="c=$event"></pagination-controls>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="col-md-4 col-sm-4" [style.display]="display" id="container">
+    <div id="new-item">
+        <h3 align="center" id="heading">
+            Add Catergory
+            <small>
+                <span class="close" (click)="closepopup()" aria-label="Close" id="close">x
+                </span>
+            </small>
+        </h3>
+        <div class="item-form">
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-cart-plus">
+                    </i>
+                </span>
+                <input required ngModel class="form-control" minlength="3" maxlength="50" #name="ngModel" type="text" name="Name" placeholder="Name">                
+            </div>
+            <div class="alert alert-danger" *ngIf="name.touched && !name.valid"> 
+                <div *ngIf="name.errors.required">Catergory name is required</div>
+                <div *ngIf="name.errors.minlength">Catergory name should have a minimum of {{name.errors.minlength.requiredLength}} characters</div>
+                <div *ngIf="name.errors.maxlength">Catergory name should have a maximum of {{name.errors.maxlength.requiredLength}} characters</div>
+            </div>              
+            <span>
+                <button (click)="addCatergory(name.value)"
+                    class="btn btn-primary" id="submit">
+                    Save
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

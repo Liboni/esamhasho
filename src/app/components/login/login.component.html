@@ -1,8 +1,8 @@
 <div class="login-wrap">
         <h2>Login</h2>        
         <div class="form">
-          <input type="text" placeholder="Username" name="un" />
-          <input type="password" placeholder="Password" name="pw" />
-          <button> Sign in </button>       
+          <input ngModel #userName="ngModel" type="text" placeholder="Username" name="userName" />
+          <input ngModel #password="ngModel"  type="password" placeholder="Password" name="password" />
+          <button (click)="login(userName.value,password.value)"> Sign in </button>       
         </div>
-</div>
+</div> 

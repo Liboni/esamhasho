@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { SignInUser } from '../../class/authentication';
+import { ActionResult } from '../../class/action-result';
+import { Router } from '@angular/router';
+import { AppComponent } from '../../app.component'
+import { TokenStorageService } from '../../core/token-storage.service'
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +14,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  signInUser:SignInUser;
+  actionResult:ActionResult;
 
-  constructor() { }
+  constructor(private alertService: AlertService,private token:TokenStorageService, private appComponent:AppComponent,private router: Router,private spinnerService: Ng4LoadingSpinnerService,private authenticationService:AuthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit() {   
+  }
+
+  login(userName,password){
+    this.spinnerService.show();
+    this.signInUser = {
+      Password:password,
+      RememberMe:true,
+      Username:userName
+    }
+    this.authenticationService.SignIn(this.signInUser).subscribe((results)=>{
+      this.actionResult= <ActionResult>results.json();
+      this.spinnerService.hide();
+      if(this.actionResult.Success){   
+        this.router.navigate(['dashboard/statistics']);
+        this.token.saveToken(this.actionResult.Message);
+        this.appComponent.isLoggedIn = true;
+        }     
+        else{
+          this.alertService.create(
+            "Login", 
+            "danger", 
+            5000, 
+            this.actionResult.Message 
+            ); 
+        }
+    });
   }
 
 }

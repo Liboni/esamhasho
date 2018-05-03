@@ -11,20 +11,20 @@
               <div class="row">
                   <div class="col-md-5">
                       <div class="form-group">
-                          <label>Name</label>
-                          <input type="text" class="form-control border-input" disabled placeholder="Name" value="Jersey.">
+                          <label for="name">Name</label>
+                          <input #name type="text" id="name" class="form-control border-input" placeholder="Name" value="{{product.Name}}">
                       </div>
                   </div>
                   <div class="col-md-3">
                       <div class="form-group">
-                          <label>Code</label>
-                          <input type="text" class="form-control border-input" placeholder="Code" value="#85858">
+                          <label for="code">Code</label>
+                          <input type="text" id="code" class="form-control border-input" disabled placeholder="Code" value="{{product.Code}}">
                       </div>
                   </div>
                   <div class="col-md-4">
                       <div class="form-group">
-                          <label>Manufacturer</label>
-                          <input type="text" class="form-control border-input" placeholder="Manufacturer" value="Samhasho">
+                          <label for="manufacturer">Manufacturer</label>
+                          <input #manufacturer id="manufacturer" type="text" class="form-control border-input" placeholder="Manufacturer" value="{{product.Manufacturer}}">
                       </div>
                   </div>
               </div>
@@ -32,14 +32,14 @@
               <div class="row">
                   <div class="col-md-6">
                       <div class="form-group">
-                        <label>Unit price</label>
-                        <input type="number" class="form-control border-input" placeholder="Unit price ($)" value="5">
+                        <label for="price">Unit price</label>
+                        <input #price id="price" type="number" class="form-control border-input" placeholder="Unit price ($)" value="{{product.Price}}">
                       </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
-                          <label>Per</label>
-                          <input type="text" class="form-control border-input" placeholder="Per" value="1 jersey">
+                          <label for="per">Per</label>
+                          <input #per id="per" type="text" class="form-control border-input" placeholder="Per" value="{{product.Per}}">
                       </div>
                   </div>
               </div> 
@@ -47,45 +47,35 @@
               <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                      <label>Catergory</label>
-                      <select class="select" id="feedback" required="required" name="FeedBackType">
+                      <label for="catergory">Catergory</label>
+                      <select ngModel [(ngModel)] = "product.CatergoryId"id="catergory" #catergory="ngModel" class="select" required name="catergory">
                         <option value="" class="option">---Select product caterory---</option>
-                        <option value="1" class="option">Crops</option>
-                        <option value="2" class="option">Electronics</option>
-                        <option value="3" class="option">Livestock</option>
-                        <option value="4" class="option">Grocery</option>
-                        <option value="6" class="option">Furniture</option>
-                        <option value="7" class="option" selected>Clothes</option>
-                        <option value="8" class="option">Shoes</option>
-                        <option value="9" class="option">Jewelery</option>
-                      </select>
+                        <option *ngFor="let item of catergoryList;" value="{{item.Id}}" class="option">
+                            {{item.Name}}
+                        </option>
+                    </select>
                     </div>
                 </div>               
             </div> 
               <div class="row">
                   <div class="col-md-12">
                       <div class="form-group">
-                          <label>Short description</label>
-                          <textarea rows="5" class="form-control border-input" placeholder="Here can be your short description" value="Mike">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
+                          <label for="shortdescription">Short description</label>
+                          <textarea #shortdescription id="shortdescription" rows="5" class="form-control border-input" placeholder="Here can be your short description">{{product.ShortDescription}}</textarea>
                       </div>
                   </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Description</label>
-                        <textarea rows="5" class="form-control border-input" placeholder="Here can be your detailed description" value="Mike">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
+                        <label for="description">Description</label>
+                        <textarea #description id="description" rows="5" class="form-control border-input" placeholder="Here can be your detailed description">{{product.Description}}</textarea>
                     </div>
                 </div>
             </div>
               <div class="text-center">
-                  <button type="submit" class="btn btn-lg btn-success">Update Profile</button>
+                  <button (click)="updateProduct(name.value, manufacturer.value, price.value, per.value, catergory.value, shortdescription.value, description.value)" 
+                   class="btn btn-lg btn-success">Update</button>
               </div>
               <div class="clearfix"></div>
           </form>

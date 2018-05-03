@@ -291,7 +291,7 @@
   #container {
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 9999;
-    position: fixed;
+    position: absolute;
     bottom: 3em;
     right: 2em;
     border-radius:.5em;
@@ -324,6 +324,11 @@
     padding-bottom: 0.3em;
     font-size: .8em;
   
+  }
+
+  .dropdown-menu{
+    right: 3em;
+left: unset;
   }
   
   #close:hover{

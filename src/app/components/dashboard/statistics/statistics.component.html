@@ -9,32 +9,6 @@
           </button>
           <a class="navbar-brand" href="#">Dashboard</a>
       </div>
-      <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-              <li>
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <i class="ti-panel"></i>
-      <p>Stats</p>
-                  </a>
-              </li>
-              <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="ti-bell"></i>
-                          <p class="notification">5</p>
-        <p>Notifications</p>
-        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Notification 1</a></li>
-                      <li><a href="#">Notification 2</a></li>
-                      <li><a href="#">Notification 3</a></li>
-                      <li><a href="#">Notification 4</a></li>
-                      <li><a href="#">Another notification</a></li>
-                    </ul>
-              </li>
-           </ul>
-
-      </div>
   </div>
 </nav>
 
@@ -53,7 +27,7 @@
                           <div class="col-xs-7">
                               <div class="numbers">
                                   <p>Notifications</p>
-                                  500
+                                  {{notifications?.length}}
                               </div>
                           </div>
                       </div>
@@ -77,15 +51,15 @@
                           </div>
                           <div class="col-xs-7">
                               <div class="numbers">
-                                  <p>Users</p>
-                                  1345
+                                  <p>Products</p>
+                                  {{productViewers?.length}}
                               </div>
                           </div>
                       </div>
                       <div class="footer">
                           <hr />
                           <div class="stats">
-                              <i class="ti-calendar"></i> Currently online
+                              <i class="ti-calendar"></i> Viewed today
                           </div>
                       </div>
                   </div>
@@ -102,15 +76,15 @@
                           </div>
                           <div class="col-xs-7">
                               <div class="numbers">
-                                  <p>Messages</p>
-                                  23
+                                  <p>Blogs</p>
+                                  {{blogViewers?.length}}
                               </div>
                           </div>
                       </div>
                       <div class="footer">
                           <hr />
                           <div class="stats">
-                              <i class="ti-timer"></i> Sent today
+                              <i class="ti-timer"></i> Viewed today
                           </div>
                       </div>
                   </div>
@@ -125,18 +99,15 @@
                       <h4 class="title">Products Behavior</h4>
                       <p class="category">24 Hours performance</p>
                   </div>
-                  <div class="content">
-                      <div id="chartHours" class="ct-chart"></div>
+                  <div class="content">                      
+                        <canvas id="productChart"></canvas>                     
                       <div class="footer">
                           <div class="chart-legend">
                               <i class="fa fa-circle text-info"></i> Open
                               <i class="fa fa-circle text-danger"></i> Click
                               <i class="fa fa-circle text-warning"></i> Click Second Time
                           </div>
-                          <hr>
-                          <div class="stats">
-                              <i class="ti-reload"></i> Updated 3 minutes ago
-                          </div>
+                          <hr>                         
                       </div>
                   </div>
               </div>

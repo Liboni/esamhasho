@@ -16,22 +16,7 @@
                       <i class="ti-panel"></i>
       <p>Stats</p>
                   </a>
-              </li>
-              <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="ti-bell"></i>
-                          <p class="notification">5</p>
-        <p>Notifications</p>
-        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Notification 1</a></li>
-                      <li><a href="#">Notification 2</a></li>
-                      <li><a href="#">Notification 3</a></li>
-                      <li><a href="#">Notification 4</a></li>
-                      <li><a href="#">Another notification</a></li>
-                    </ul>
-              </li>
+              </li>             
            </ul>
 
       </div>
@@ -46,11 +31,11 @@
                     <div class="card">
                         <div class="header">
                             <div class="col-sm-9">
-                          <button type="submit" class="btn btn-md btn-success"><i class="fa fa-plus"></i> Add</button>
+                          <button  (click)="toggleAddBlog(AddBlogBtnText)" type="submit" class="btn btn-md btn-success"> {{AddBlogBtnText}}</button>
                         </div>
                           <div class="col-sm-3">
                               <div class="search_box pull-right">
-                                  <input type="text" placeholder="Search"/>
+                                  <input type="text"  [(ngModel)]="search" placeholder="Search"/>
                               </div>
                           </div>
                         </div>
@@ -64,53 +49,104 @@
                                   <th>Action</th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                      <td>1</td>
-                                      <td><img src="/assets/images/blog/blog-one.jpg" alt="" /></td>
-                                      <td>Dakota Rice</td>                                     
-                                      <td>Oud-Turnhout</td>
-                                      <td><i class="fa fa-ellipsis-v"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td>2</td>
-                                      <td><img src="/assets/images/blog/blog-two.jpg" alt="" /></td>
-                                      <td>Minerva Hooper</td>                                     
-                                      <td>Sinaai-Waas</td>
-                                      <td><i class="fa fa-ellipsis-v"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td>3</td>
-                                      <td><img src="/assets/images/blog/blog-three.jpg" alt="" /></td>
-                                      <td>Sage Rodriguez</td>                                     
-                                      <td>Baileux</td>
-                                      <td><i class="fa fa-ellipsis-v"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td>4</td>
-                                      <td><img src="/assets/images/blog/man-three.jpg" alt="" /></td>
-                                      <td>Philip Chaney</td>                                     
-                                      <td>Overland Park</td>
-                                      <td><i class="fa fa-ellipsis-v"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td>5</td>
-                                      <td><img src="/assets/images/blog/man-one.jpg" alt="" /></td>
-                                      <td>Doris Greene</td>                                     
-                                      <td>Feldkirchen in Kärnten</td>
-                                      <td><i class="fa fa-ellipsis-v"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td>6</td>
-                                      <td><img src="/assets/images/blog/man-two.jpg" alt="" /></td>
-                                      <td>Mason Porter</td>                                     
-                                      <td>Gloucester</td>
-                                      <td><i class="fa fa-ellipsis-v"></i></td>
-                                    </tr>
+                                    <tr *ngFor="let i = index; let item of blogs | paginate: { itemsPerPage:5, currentPage:b } | filter:search">
+                                      <td>{{i+1}}</td>
+                                      <td><img src="{{item.MediaUrl}}" alt="" /></td>
+                                      <td>{{item.Name}}</td>                                     
+                                      <td>{{item.DateCreated}}</td>
+                                      <td>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                                  <i class="fa fa-ellipsis-v"></i><b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                            <li (click)="deleteBlog(item)"><a>Delete</a></li>
+                                        </ul>
+                                      </li>
+                                    </td>
+                                    </tr> 
                                 </tbody>
-                            </table>      
+                            </table> 
+                            <pagination-controls (pageChange)="b=$event"></pagination-controls>     
                         </div>
                     </div>
                 </div>
             </div>
         </div>
       </div>
+
+
+
+      <div class="col-md-4 col-sm-4" [style.display]="display" id="container">
+        <div id="new-item">
+            <h3 align="center" id="heading">
+                Add Blog
+                <small>
+                    <span class="close" (click)="closepopup()" aria-label="Close" id="close">x
+                    </span>
+                </small>
+            </h3>
+            <div class="item-form">    
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-cart-plus">
+                        </i>
+                    </span>
+                    <input required ngModel class="form-control" minlength="3" maxlength="50" #name="ngModel" type="text" name="Name" placeholder="Name">                
+                </div>
+                <div class="alert alert-danger" *ngIf="name.touched && !name.valid"> 
+                    <div *ngIf="name.errors.required">Name is required</div>
+                    <div *ngIf="name.errors.minlength">Name should have a minimum of {{name.errors.minlength.requiredLength}} characters</div>
+                    <div *ngIf="name.errors.maxlength">Name should have a maximum of {{name.errors.maxlength.requiredLength}} characters</div>
+                </div> 
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-cart-plus">
+                        </i>
+                    </span>
+                    <input required ngModel class="form-control" minlength="3" maxlength="100" #titleDescription="ngModel" type="text" name="titleDescription" placeholder="Title description">                
+                </div>
+                <div class="alert alert-danger" *ngIf="titleDescription.touched && !titleDescription.valid"> 
+                    <div *ngIf="titleDescription.errors.required">Title description is required</div>
+                    <div *ngIf="titleDescription.errors.minlength">Title description should have a minimum of {{titleDescription.errors.minlength.requiredLength}} characters</div>
+                    <div *ngIf="titleDescription.errors.maxlength">Title description should have a maximum of {{titleDescription.errors.maxlength.requiredLength}} characters</div>
+                </div>   
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-cart-plus">
+                        </i>
+                    </span>
+                    <input required ngModel class="form-control" minlength="3" maxlength="150" #shortDescription="ngModel" type="text" name="shortDescription" placeholder="Short description ">                
+                </div>
+                <div class="alert alert-danger" *ngIf="name.touched && !name.valid"> 
+                    <div *ngIf="shortDescription.errors.required">Short description is required</div>
+                    <div *ngIf="shortDescription.errors.minlength">Short description should have a minimum of {{shortDescription.errors.minlength.requiredLength}} characters</div>
+                    <div *ngIf="shortDescription.errors.maxlength">Short description should have a maximum of {{shortDescription.errors.maxlength.requiredLength}} characters</div>
+                </div>    
+
+             <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-file-text"></i>
+                    </span>
+                    <textarea ngModel #description="ngModel" class="form-control" type="text" name="description" placeholder="Description " required="required"></textarea>
+                </div>
+                <div class="alert alert-danger" *ngIf="description.touched && !description.valid"> Description is required. </div>
+    
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-paperclip"></i>
+                    </span>
+                    <input  #filesInput id="filesInput" type="file" accept="image/*" class="form-control" required>
+                </div>
+           
+                <span>
+                    <button  (click)="addBlog(name.value, description.value,titleDescription.value,shortDescription.value)"
+                        class="btn btn-primary" id="submit">
+                        Save
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>

@@ -1,10 +1,10 @@
 <div class="contact-wrap">
     <h2>Contact Us</h2>        
     <div class="form">
-      <input type="text" placeholder="Username" name="un" />
-      <input type="email" placeholder="email" name="pw" />
-      <input type="number" placeholder="phone" name="un" />
-      <textarea type="password" placeholder="message"  ></textarea>
-      <button> Submit</button>       
+      <input ngModel  #name="ngModel" type="text" placeholder="Username" name="un" />
+      <input  ngModel #email="ngModel"  type="email" placeholder="email" name="pw" />
+      <input ngModel #phone="ngModel" type="number" placeholder="phone" name="un" />
+      <textarea  ngModel #message="ngModel" type="text" placeholder="message"  ></textarea>
+      <button (click)="comment(message.value,phone.value,name.value,email.value)"> Submit</button>       
     </div>
 </div>

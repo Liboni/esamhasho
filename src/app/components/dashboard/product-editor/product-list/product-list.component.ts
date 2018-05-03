@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Product, CreateProductResponse } from '../../../../class/product';
+import { ProductService } from '../../../../services/product.service';
+import { ActionResult } from '../../../../class/action-result';
+import { Catergory } from '../../../../class/catergory';
+import { CatergoryService } from '../../../../services/catergory.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { AlertService } from '../../../../services/alert.service';
 
 @Component({
   selector: 'app-product-list',
@@ -7,100 +14,112 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
   display:string;
-  productcofiguration:string;
-  productdetails:product;
-  products:product[];
-  constructor() { }
-
-  ngOnInit() {
-    this.productcofiguration= "Add"; 
-    this.productdetails = {
-       name: "",
-       code: "",
-       manufacturer: "",
-       price: 0,
-       per: "",
-       catergory : {
-           value:0,
-           name:""
-       },
-       shortDescription: "",
-       description: "",
-       media: [""],
-       date:new Date().toLocaleDateString()
-     };
-     this.products = new Array<product>();
+  AddProductBtnText:String;
+  products:Product[];
+  product:Product;
+  catergoryList:Catergory[];
+  @ViewChild('filesInput') filesInput;
+  constructor(private alertService: AlertService,private productService:ProductService, private catergoryService:CatergoryService,private spinnerService: Ng4LoadingSpinnerService) { 
   }
 
-  popup(productcofiguration){
-    if(productcofiguration== "Close"){
-      this.productcofiguration= "Add";
-      this.display="none";
-      
+  ngOnInit() {    
+    this.AddProductBtnText= "Add";   
+    this.productService.GetAllProducts().subscribe((products)=>{
+      this.products= <Product[]>products.json();
+   });
+   this.catergoryService.GetAllCatergories().subscribe((catergories)=>{
+   this.catergoryList = <Catergory[]>catergories.json();
+  });
+}
+
+toggleAddProduct(AddProductBtnText){
+    if(AddProductBtnText== "Close"){
+      this.AddProductBtnText= "Add";
+      this.display="none";      
     }
-    if(productcofiguration== "Add"){
-      this.productcofiguration= "Close";
-      this.display="block";
+    if(AddProductBtnText== "Add"){
+      this.AddProductBtnText= "Close";
+      this.display="block";   
     }
   }
 
   closepopup(){
-    this.productcofiguration= "Add";
+    this.AddProductBtnText= "Add";
     this.display="none";
   }
 
-
   saveProduct(
-    // name: string, code: string,
-    // manufacturer: string, price: number,
-    // per: string, shortDescription: string,
-    // description: string, media: string,
+    name: string, 
+    manufacturer: string, 
+    price: number,
+    per: string, 
+    catergory: number, 
+    shortdescription: string,
+    description: string,
+    isMain:Boolean,
+    IsActive:Boolean
   ){
-     this.productdetails={
-      name: "Jersey",
-      code: "ref-09877",
-      manufacturer: "Samhasho",
-      price: 5,
-      per: "short",
-      catergory : {
-          value:1,
-          name:"Clothes"
-      },
-      shortDescription: "Clothes",
-      description: "Clothes",
-      media: ["/assets/images/home/product1.jpg"],
-      date:new Date().toLocaleDateString()
-    }
-
-   ///this.productCreated.emit(new product("","","",  0, "", "","",[""],new Date().toLocaleDateString()));
-    if(this.productdetails != null){
-      console.log(this.productdetails);
-        this.products.push(this.productdetails);
-    }
+    this.spinnerService.show();
+    this.closepopup();
+    const formData = new FormData();   
+    formData.append("media", this.filesInput.nativeElement.files[0]);
+    var date = new Date();
+    let code = date.getTime(); 
+    formData.append("code", String(code));
+    formData.append("manufacturer", manufacturer);
+    formData.append("price", String(price));
+    formData.append("per", per);
+    formData.append("catergory", String(catergory));
+    formData.append("shortDescription", shortdescription);
+    formData.append("description", description);
+    formData.append("userId", "35ae5e07-86c4-4243-9aab-7d29cd3a991d");
+    formData.append("name", name);
+    formData.append("name", String(isMain));
+    formData.append("name", String(IsActive));
+    this.productService.CreateProduct(formData).subscribe((result)=>{
+         let productReponse= <CreateProductResponse>result.json();
+         this.product = {
+            Catergory:productReponse.Catergory,
+            Price:price,
+            ProductId:productReponse.ProductId,
+            ShortDescription:shortdescription,
+            Per:per,
+            Name:name,
+            Manufacturer:manufacturer,
+            Description:description,
+            Code:String(code),
+            CreatedDate:productReponse.DateCreated,
+            IsDeleted:false,
+            MediaSource:productReponse.MediaSource,
+            ModifiedDate:"",
+            Views:0,
+            CatergoryId:catergory,
+            UserId:"",
+            IsMain:isMain,
+            IsActive:IsActive
+         }
+         this.products.unshift(this.product);
+         this.spinnerService.hide();
+    });     
   }
-
-  addProduct(product) {
-    this.products.unshift(product);
+  deleteProduct(product){  
+    this.spinnerService.show();  
+    this.productService.DeleteProduct(product.ProductId).subscribe((result)=>{
+       let actionResult =<ActionResult>result.json();
+       if(actionResult.Success){
+       const index: number = this.products.indexOf(product);
+       this.products.splice(index,1)
+       this.spinnerService.hide();
+       }
+       else{
+        this.alertService.create(
+          "Product", 
+          "danger", 
+          5000, 
+          actionResult.Message 
+          ); 
+       }
+   });
   }
-
-
-}
-
-
-class product{
-  name:string;
-  code:string;
-  manufacturer:string;
-  price:number;
-  per:string;
-  catergory:catergory
-  shortDescription:string;
-  description:string;
-  media:string[];
-  date:string;
-}
-
-interface catergory{
-  value:number;
-  name:string;
+  
 }

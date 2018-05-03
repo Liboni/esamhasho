@@ -2,7 +2,7 @@
     position: relative;
     margin: 0 auto;
     background: #F0F0E9;
-    width: 45em;
+    width: 85vmin;
     border-radius: 5px;
     box-shadow: 3px 3px 10px #333;
     padding: 15px;
@@ -24,7 +24,7 @@
   .contact-wrap .form textarea,
   .contact-wrap .form input[type="email"],
   .contact-wrap .form button {
-    width: 80%;
+    width: 65vmin;
     margin-left: 10%;
     margin-bottom: 25px;
     height: 40px;

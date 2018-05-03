@@ -10,12 +10,8 @@ export class ProductEditorComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {  
-   
+  ngOnInit() {    
   }  
-
-  
-
 }
 
 

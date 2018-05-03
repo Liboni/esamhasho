@@ -198,7 +198,8 @@ text-align: center;
     border-radius: 8px 8px 0 0;
     height: 150px;
     position: relative;
-    overflow: hidden; }
+    overflow: hidden; 
+    padding-top: 2em;}
     .card-user .image img {
       width: 100%; }
   .card-user .image-plain {
@@ -207,7 +208,8 @@ text-align: center;
   .card-user .author {
     text-align: center;
     text-transform: none;
-    margin-top: -65px; }
+    margin-top: -65px; 
+    padding-top: 2.5em;}
     .card-user .author .title {
       color: #403D39; }
       .card-user .author .title small {
@@ -414,3 +416,72 @@ text-align: center;
       background-color: transparent; }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+#container {
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 9999;
+  position: fixed;
+  bottom: 30em;
+  right: 35em;
+  border-radius:.5em;
+  display: none;
+  background-color:#fff;
+  min-height: 5em;
+}        
+
+.input-group {
+  margin-bottom: 1em;
+}
+#contact {
+  margin: 2em;
+
+}
+
+#heading {
+  margin-bottom: 1em;
+ color: #b4b1ab
+}    
+#close {
+  color: white;
+  font-family: monospace;
+  font-weight: lighter;
+  background-color: rgba(50, 50, 60, 1);
+  border-radius: 8px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.2em;
+  padding-bottom: 0.3em;
+  font-size: .8em;
+
+}
+
+.dropdown-menu{
+  right: 3em;
+left: unset;
+}
+
+#close:hover{
+  color: white;
+  background-color: red;
+  font-family: monospace;
+  font-weight: lighter;
+  box-shadow: 0px 0px 4px white;
+}     
+
+.item-form{
+margin-bottom:15px;
+}
+
+li{
+list-style-type: none;
+}

@@ -1,13 +1,4 @@
- .login-wrap {
-    position: relative;
-    margin: 0 auto;
-    background: #F0F0E9;
-    width: 350px;
-    border-radius: 5px;
-    box-shadow: 3px 3px 10px #333;
-    padding: 15px;
-    margin-bottom: 5em;
-  }
+
   .login-wrap h2 {
     text-align: center;
     font-weight: 200;
@@ -73,4 +64,77 @@
     height: 5px;
     border-radius: 5px 5px 0 0;
   }
+
+@media (min-width:320px)  {
+  .login-wrap {
+    position: relative;
+    margin: 0 auto;
+    background: #F0F0E9;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-bottom: 5em;
+  }
+}
+@media (min-width:481px)  { 
+  .login-wrap {
+    position: relative;
+    margin: 0 auto;
+    background: #F0F0E9;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-bottom: 5em;
+  }
+}
+@media (min-width:641px)  { 
+  .login-wrap {
+    position: relative;
+    margin: 0 auto;
+    background: #F0F0E9;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-bottom: 5em;
+  }
+ }
+@media (min-width:961px)  { 
+  .login-wrap {
+    position: relative;
+    margin: 0 auto;
+    background: #F0F0E9;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-bottom: 5em;
+  }
+ }
+@media (min-width:1025px) { 
+  .login-wrap {
+    position: relative;
+    margin: 0 auto;
+    background: #F0F0E9;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-bottom: 5em;
+  }
+}
+@media (min-width:1281px) {
+  .login-wrap {
+    position: relative;
+    margin: 0 auto;
+    background: #F0F0E9;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #333;
+    padding: 15px;
+    margin-bottom: 5em;
+  }
+}
   

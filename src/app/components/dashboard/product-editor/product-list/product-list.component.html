@@ -1,141 +1,174 @@
 <div class="content">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="header">
-                      <div class="col-sm-9">
-                    <button (click)="popup(productcofiguration)" class="btn btn-md btn-success"> {{productcofiguration}}</button>
-                  </div>
-                    <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Search"/>
-                        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <div class="col-sm-9">
+                            <button (click)="toggleAddProduct(AddProductBtnText)" class="btn btn-md btn-success"> {{AddProductBtnText}}</button>
+                       
+                        </div>     
+                        <div class="col-sm-3">
+                            <div class="search_box pull-right">
+                                <input type="text" [(ngModel)]="search" placeholder="Search"/>
+                            </div>
+                        </div>                 
                     </div>
-                  </div>
-                  <div class="content table-responsive table-full-width">
-                      <table class="table table-striped">
-                          <thead>
-                            <th>#</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Catergory</th>
-                            <th>Date Created</th>
-                            <th>Action</th>
-                          </thead>
-                          <tbody>
-                             <tr *ngFor="let product of products; let i = index">
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Catergory</th>
+                                <th>Date Created</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i = index; let product of products | paginate: { itemsPerPage:5, currentPage:p } | filter:search">
                                     <td>{{i+1}}</td>
-                                    <td><img src="{{product.media}}" alt="" /></td>
-                                    <td>{{product.name}}</td>
-                                    <td>${{product.price}}</td>
-                                    <td>{{product.catergory.name}}</td>
-                                    <td>{{product.date}}</td>
+                                    <td>
+                                        <img src="{{product.MediaSource}}" alt="" />
+                                    </td>
+                                    <td>{{product.Name}}</td>
+                                    <td>${{product.Price}}/ {{product.Per}}</td>
+                                    <td>{{product.Catergory}}</td>
+                                    <td>{{product.CreatedDate}}</td>
                                     <td>
                                         <li class="dropdown">
                                             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                                  <i class="fa fa-ellipsis-v"></i><b class="caret"></b>
+                                                <i class="fa fa-ellipsis-v"></i>
+                                                <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu">
-                                              <li><a [routerLink]="['/dashboard/product-editor/details']" >View details</a></li>
-                                              <li><a [routerLink]="['/dashboard/product-editor/images']">View images</a></li>
-                                              <li><a>Enable</a></li>
-                                              <li><a>Delete</a></li>
+                                                <li>
+                                                    <a [routerLink]="['/dashboard/product-editor/details',product.ProductId]">View details</a>
+                                                </li>
+                                                <li>
+                                                    <a [routerLink]="['/dashboard/product-editor/images',product.ProductId]">View images</a>
+                                                </li>
+                                                <li (click)="deleteProduct(product)">
+                                                    <a>Delete</a>
+                                                </li>
                                             </ul>
-                                      </li>
+                                        </li>
                                     </td>
-                              </tr> 
-                        </tbody>
-                      </table>
-
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-
-<div class="col-md-4 col-sm-4"[style.display]="display" id="container">		
-    <div id="new-item">				
-            <h3 align="center" id="heading">
-                Add Product <small>
-                    <span class="close"(click)="closepopup()" aria-label="Close" id="close">x
-                    </span>
-                </small>
-            </h3>
-            <form class="item-form">			
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-cart-plus">
-                        </i> </span>
-                        <input class="form-control" type="text" name="Name" placeholder="Name" required="required" maxlength="100" >
-               </div>
-               <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-barcode">
-                    </i> </span>
-                    <input class="form-control" type="text" name="code" placeholder="Code " required="required" maxlength="100">
-           </div>
-           <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-industry">
-                    </i> </span>
-                    <input id="manufacturer" class="form-control" type="text" name="manufacturer" placeholder="Manufacturer " required="required" >
-           </div>
-            
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-money"></i>
-                    </span>
-                    <div class="col-md-8">
-                    <input id="price"  class="form-control" type="number" name="price" placeholder="Unit price ($)" required="required" >
+                                </tr>                                
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p=$event"></pagination-controls>
                     </div>
-                    <div class="col-md-4">
-                     <input id="per" class="form-control" type="text" name="per" placeholder="Per" required="required" >
-                    </div>					                        
                 </div>
-                <!--Feedback type-->
-                 <div class="form-group">
-                      <label>Catergory :</label>
-                      <select class="select" id="feedback" required="required" name="FeedBackType">
-                        <option value="" class="option">---Select product caterory---</option>
-                        <option value="1" class="option">Crops</option>
-                        <option value="2" class="option">Electronics</option>
-                        <option value="3" class="option">Livestock</option>
-                        <option value="4" class="option">Grocery</option>
-                        <option value="6" class="option">Furniture</option>
-                        <option value="7" class="option">Clothes</option>
-                        <option value="8" class="option">Shoes</option>
-                        <option value="9" class="option">Jewelery</option>
-                      </select>
-                </div> 
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-file-text"></i>
-                    </span>
-                    <textarea class="form-control" type="text" name="shortdescription" placeholder="Short description " required="required" ></textarea>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-file-text"></i>
-                    </span>
-                    <textarea class="form-control" type="text" name="description" placeholder="Description " required="required" ></textarea>
-                </div>
-                <div class="input-group">
-                        <span class="input-group-addon">
-                        <i class="fa fa-paperclip"></i>
-                    </span>
-                    <input type="file" class="form-control" multiple>
-                    </div>
-                <span>
-                    <button (click)="saveProduct()" class="btn btn-primary" id="submit">
-                        Save
-                    </button>
-                </span>
-            </form>			
+            </div>
+        </div>
     </div>
 </div>
 
 
+<div class="col-md-4 col-sm-4" [style.display]="display" id="container">
+    <div id="new-item">
+        <h3 align="center" id="heading">
+            Add Product
+            <small>
+                <span class="close" (click)="closepopup()" aria-label="Close" id="close">x
+                </span>
+            </small>
+        </h3>
+
+       <form #addProductForm="ngForm">
+        <div class="item-form">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-cart-plus">
+                    </i>
+                </span>
+                <input required ngModel class="form-control" minlength="3" maxlength="50" #name="ngModel" type="text" name="Name" placeholder="Name">                
+            </div>
+            <div class="alert alert-danger" *ngIf="name.touched && !name.valid"> 
+                <div *ngIf="name.errors.required">Name is required</div>
+                <div *ngIf="name.errors.minlength">Name should have a minimum of {{name.errors.minlength.requiredLength}} characters</div>
+                <div *ngIf="name.errors.maxlength">Name should have a maximum of {{name.errors.maxlength.requiredLength}} characters</div>
+            </div>
+
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-industry">
+                    </i>
+                </span>
+                <input required ngModel #manufacturer="ngModel" class="form-control" type="text" name="manufacturer" placeholder="Manufacturer">
+            </div>
+            <div class="alert alert-danger" *ngIf="manufacturer.touched && !manufacturer.valid"> 
+                <div *ngIf="manufacturer.errors.required">Manufacturer is required</div>
+                <div *ngIf="manufacturer.errors.minlength">Manufacturer should have a minimum of {{name.errors.minlength.requiredLength}} characters</div>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-money"></i>
+                </span>
+                <div class="col-md-8">
+                    <input ngModel #price="ngModel" class="form-control" type="number" name="price" placeholder="Unit price ($)" required>
+                </div>
+                <div class="col-md-4">
+                    <input ngModel #per="ngModel" class="form-control" type="text" name="per" placeholder="Per" required>
+                </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="price.touched && !price.valid"> A vaild price is required. </div>
+            <div class="alert alert-danger" *ngIf="per.touched && !per.valid"> Unit of measure is required. </div>
+
+            <!--Feedback type-->
+            <div class="form-group">
+                <label>Catergory :</label>
+                <select ngModel #catergory="ngModel" class="select" required name="catergory">
+                    <option value="" class="option">---Select product caterory---</option>
+                    <option *ngFor="let item of catergoryList;" value="{{item.Id}}" class="option">
+                        {{item.Name}}
+                    </option>
+                </select>
+            </div>
+            <div class="alert alert-danger" *ngIf="catergory.touched && !catergory.valid"> Select catergory. </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-file-text"></i>
+                </span>
+                <textarea ngModel #shortdescription="ngModel"  maxlength="100" class="form-control" type="text" name="shortdescription" placeholder="Short description " required></textarea>
+            </div>
+            <div class="alert alert-danger" *ngIf="shortdescription.touched && !shortdescription.valid"> Short description is required. </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-file-text"></i>
+                </span>
+                <textarea ngModel #description="ngModel" class="form-control" type="text" name="description" placeholder="Description " required="required"></textarea>
+            </div>
+            <div class="alert alert-danger" *ngIf="description.touched && !description.valid"> Description is required. </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-paperclip"></i>
+                </span>
+                <input  #filesInput id="filesInput" type="file" accept="image/*" class="form-control" required>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                        <label>Main Product  <input ngModel #isMain="ngModel" type="checkbox" class="form-control" name="isMain" required="required"/></label>
+                               </div>
+                <div class="col-sm-6">
+                        <label>Active Image <input ngModel #isActive="ngModel" type="checkbox" class="form-control" name="isActive"/></label>
+                 </div>
+               
+            </div>
+            
+            <span>
+                <button [disabled]="!addProductForm.valid" (click)="saveProduct(name.value, manufacturer.value, price.value, per.value, catergory.value, shortdescription.value, description.value, isMain.value, isActive.value)"
+                    class="btn btn-primary" id="submit">
+                    Save
+                </button>
+            </span>
+        </div>
+    </form>
+    </div>
+</div>

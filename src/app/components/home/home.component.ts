@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service'
+import { CatergoryService } from '../../services/catergory.service'
+import { Catergory } from '../../class/catergory'
+import { Product, CreateProductResponse } from '../../class/product';
+import { ProductService } from '../../services/product.service';
+import { SearchProductRequest} from '../../class/product';
 
 @Component({
   selector: 'app-home',
@@ -7,29 +11,47 @@ import { DataService } from '../../services/data.service'
   styleUrls: ['./home.component.css']
 })
 
-
 export class HomeComponent implements OnInit {
-name:string;
-hobbies:string[];
-posts:Post[];
+  catergoryId:number;
+  catergories:Catergory[];
+  catergory:Catergory;
+  products:Product[];
+  productsFeature:Product[];
+  product:Product;
 
-  constructor(private dataService:DataService) {
+  searchProductRequest:SearchProductRequest;
 
+  constructor(private productService:ProductService,private catergoryService:CatergoryService) {
+    this.catergory= new Catergory;
+    this.product= new Product;
+    this.searchProductRequest= new SearchProductRequest;
    }
 
   ngOnInit() {
-     this.dataService.getPosts().subscribe((posts)=>{
-      this.posts = posts;
-    })
-  }  
+    this.catergoryId= 0
+    this.loadProducts(this.catergoryId)
+    this.catergoryService.GetAllCatergories().subscribe((catergories)=>{    
+      this.catergories = <Catergory[]>catergories.json();
+   });
+   this.productService.GetAllProducts().subscribe((products)=>{
+    this.products= <Product[]>products.json();
+   });  
+  }
+  
+
+  loadProducts(catergoryId){
+    this.catergoryId=catergoryId;
+    this.searchProductRequest = {
+      Catergory :this.catergoryId,
+      Search:""
+  }
+  this.productService.SearchProduct(this.searchProductRequest).subscribe((products)=>{
+    this.productsFeature= <Product[]>products.json();
+   });
+  }
 }
 
-interface Post{
-  id:number,
-  title:string,
-  body:string,
-  userId:number
-}
+
 
 
 
