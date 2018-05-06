@@ -47,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
            this.notificationService.GetNotificationsByProduct(this.productId).subscribe((result)=>{
                this.notifications = <Notification[]>result.json();
               if(this.token.Name==null){
-                this.statisticsService.AddProductViewer(this.productId);
+                this.statisticsService.AddProductViewer(this.productId);             
                }              
             });    
            this.spinnerService.hide();        

@@ -1,17 +1,11 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-      <div class="navbar-header">
-          <button type="button" class="navbar-toggle">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar bar1"></span>
-              <span class="icon-bar bar2"></span>
-              <span class="icon-bar bar3"></span>
-          </button>
-          <a class="navbar-brand" href="#">Dashboard</a>
-      </div>
-  </div>
-</nav>
 
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">               
+                <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+            </div>
+        </div>
+      </nav>
 <div class="content">
   <div class="container-fluid">
       <div class="row">
@@ -97,16 +91,10 @@
               <div class="card">
                   <div class="header">
                       <h4 class="title">Products Behavior</h4>
-                      <p class="category">24 Hours performance</p>
                   </div>
                   <div class="content">                      
                         <canvas id="productChart"></canvas>                     
                       <div class="footer">
-                          <div class="chart-legend">
-                              <i class="fa fa-circle text-info"></i> Open
-                              <i class="fa fa-circle text-danger"></i> Click
-                              <i class="fa fa-circle text-warning"></i> Click Second Time
-                          </div>
                           <hr>                         
                       </div>
                   </div>
@@ -117,21 +105,17 @@
           <div class="col-md-6">
               <div class="card">
                   <div class="header">
-                      <h4 class="title">Message Statistics</h4>
+                      <h4 class="title">Product Behavior</h4>
                       <p class="category">Performance</p>
                   </div>
                   <div class="content">
-                      <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                    <canvas id="productlineChart"></canvas>        
 
                       <div class="footer">
-                          <div class="chart-legend">
-                              <i class="fa fa-circle text-info"></i> Feedback
-                              <i class="fa fa-circle text-danger"></i> Blog
-                              <i class="fa fa-circle text-warning"></i> Enquire
-                          </div>
+                        
                           <hr>
                           <div class="stats">
-                              <i class="ti-timer"></i> Performance sent 2 days ago
+                              <i class="ti-timer"></i> Data information certified
                           </div>
                       </div>
                   </div>
@@ -140,18 +124,13 @@
           <div class="col-md-6">
               <div class="card ">
                   <div class="header">
-                      <h4 class="title">Users location</h4>
-                      <p class="category">All users</p>
+                      <h4 class="title">Blog Behavior</h4>
                   </div>
                   <div class="content">
-                      <div id="chartActivity" class="ct-chart"></div>
+                    <canvas id="blogChart"></canvas>  
 
                       <div class="footer">
-                          <div class="chart-legend">
-                              <i class="fa fa-circle text-info"></i> 
-                              <i class="fa fa-circle text-warning"></i> 
-                          </div>
-                          <hr>
+                                                  <hr>
                           <div class="stats">
                               <i class="ti-check"></i> Data information certified
                           </div>

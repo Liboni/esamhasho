@@ -35,18 +35,23 @@ export class StatisticsService {
       result = result.json();
       this.view = {
         Country: result.country,
-        ViewId: 0,
         DataId: Number(productId),
         IpAddress: result.ip,
         Town: result.loc,
-        DateCreated: new Date
-      }    
-      this.Post('http://localhost:55148/ProductService.svc/json/AddProductViewer', this.view).subscribe((data) => { });
+        ViewId: 0           
+        
+      } 
+      this.Post('http://localhost:55148/ProductService.svc/json/AddProductViewer', this.view)
+      .subscribe((data) => {
+        console.log(data);
+       });
     });
   }
 
   Post(url, data) {
-    return this.http.post(url, data).map((response: Response) => {
+    
+    return this.http.post(url, data)
+    .map((response: Response) => {
       return response;
     }).catch(this.handleError);
   }
@@ -59,8 +64,7 @@ export class StatisticsService {
         ViewId: 0,
         DataId: Number(blogId),
         IpAddress: result.ip,
-        Town: result.loc,
-        DateCreated: new Date
+        Town: result.loc
       }    
       this.Post('http://localhost:55148/BlogService.svc/json/AddBlogViewer', this.view).subscribe((data) => { });
     });
