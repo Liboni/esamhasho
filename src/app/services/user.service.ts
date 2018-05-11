@@ -8,14 +8,14 @@ export class UserService {
   constructor(public http:Http) { }
 
 GetUserDetails(token){  
-return this.http.post('https://62aa9ba5.ngrok.io/UserService.svc/json/GetUserDetails',token) 
+return this.http.post('http://62aa9ba5.ngrok.io/UserService.svc/json/GetUserDetails',token) 
   .map((response: Response) => {     
     return response;                 
 }).catch(this.handleError);  
 }
 
 UpdateUserDetails(formdata:FormData){
-return this.http.post('https://62aa9ba5.ngrok.io/UserService.svc/json/UpdateUserDetails',formdata) 
+return this.http.post('http://62aa9ba5.ngrok.io/UserService.svc/json/UpdateUserDetails',formdata) 
 .map((response: Response) => {  
  return response;                 
 }).catch(this.handleError);  

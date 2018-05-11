@@ -17,14 +17,14 @@ export class StatisticsService {
   }
 
   GetBlogViews() {
-    return this.http.get('https://62aa9ba5.ngrok.io/BlogService.svc/json/GetBlogViews')
+    return this.http.get('http://62aa9ba5.ngrok.io/BlogService.svc/json/GetBlogViews')
       .map((response: Response) => {
         return response;
       }).catch(this.handleError);
   }
 
   GetProductViews() {
-    return this.http.get('https://62aa9ba5.ngrok.io/ProductService.svc/json/GetProductViews')
+    return this.http.get('http://62aa9ba5.ngrok.io/ProductService.svc/json/GetProductViews')
       .map((response: Response) => {
         return response;
       }).catch(this.handleError);
@@ -41,7 +41,7 @@ export class StatisticsService {
         ViewId: 0           
         
       } 
-      this.Post('https://62aa9ba5.ngrok.io/ProductService.svc/json/AddProductViewer', this.view)
+      this.Post('http://62aa9ba5.ngrok.io/ProductService.svc/json/AddProductViewer', this.view)
       .subscribe((data) => {
         console.log(data);
        });
@@ -66,7 +66,7 @@ export class StatisticsService {
         IpAddress: result.ip,
         Town: result.loc
       }    
-      this.Post('https://62aa9ba5.ngrok.io/BlogService.svc/json/AddBlogViewer', this.view).subscribe((data) => { });
+      this.Post('http://62aa9ba5.ngrok.io/BlogService.svc/json/AddBlogViewer', this.view).subscribe((data) => { });
     });
   }
 
