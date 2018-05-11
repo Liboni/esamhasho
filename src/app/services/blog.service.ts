@@ -10,28 +10,28 @@ export class BlogService {
   }
 
   AddBlog(formData:FormData){
-    return this.http.post('http://localhost:55148/BlogService.svc/json/AddBlog',formData) 
+    return this.http.post('https://62aa9ba5.ngrok.io/BlogService.svc/json/AddBlog',formData) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError); 
   }
 
   DeleteBlog(blogId){
-    return this.http.get('http://localhost:55148/BlogService.svc/json/DeleteBlog/'+blogId) 
+    return this.http.get('https://62aa9ba5.ngrok.io/BlogService.svc/json/DeleteBlog/'+blogId) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError); 
   }
 
   GetBlogs(){
-    return this.http.get('http://localhost:55148/BlogService.svc/json/GetBlogs') 
+    return this.http.get('https://62aa9ba5.ngrok.io/BlogService.svc/json/GetBlogs') 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError); 
   }
 
   BlogViewed(blogId){
-    return this.http.get('http://localhost:55148/BlogService.svc/json/BlogViewed'+blogId) 
+    return this.http.get('https://62aa9ba5.ngrok.io/BlogService.svc/json/BlogViewed'+blogId) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError); 

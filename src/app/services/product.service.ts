@@ -10,63 +10,63 @@ export class ProductService {
      }
    
    CreateProduct(formdata:FormData){
-         return this.http.post('http://localhost:55148/ProductService.svc/json/CreateProduct',formdata) 
+         return this.http.post('https://62aa9ba5.ngrok.io/ProductService.svc/json/CreateProduct',formdata) 
             .map((response: Response) => {  
               return response;                 
           }).catch(this.handleError);  
    }
    
    GetProductMedia(productId){
-    return this.http.get('http://localhost:55148/ProductService.svc/json/GetProductMedia/'+productId) 
+    return this.http.get('https://62aa9ba5.ngrok.io/ProductService.svc/json/GetProductMedia/'+productId) 
        .map((response: Response) => {  
          return response;                 
      }).catch(this.handleError);  
 }
 
    SearchProduct(searchProductRequest:SearchProductRequest){
-    return this.http.post('http://localhost:55148/ProductService.svc/json/SearchProduct',searchProductRequest) 
+    return this.http.post('https://62aa9ba5.ngrok.io/ProductService.svc/json/SearchProduct',searchProductRequest) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError);  
   }
 
   GetProduct(productId){ 
-    return this.http.get('http://localhost:55148/ProductService.svc/json/GetProduct/'+productId) 
+    return this.http.get('https://62aa9ba5.ngrok.io/ProductService.svc/json/GetProduct/'+productId) 
     .map((response: Response) => {  
       return response;                 
    }).catch(this.handleError);  
   }
 
   DeleteProduct(productId){
-    return this.http.get('http://localhost:55148/ProductService.svc/json/DeleteProduct/'+productId) 
+    return this.http.get('https://62aa9ba5.ngrok.io/ProductService.svc/json/DeleteProduct/'+productId) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError);  
   }
 
   DeleteProductMedia(productMediaId){
-    return this.http.get('http://localhost:55148/ProductService.svc/json/DeleteProductMedia/'+productMediaId) 
+    return this.http.get('https://62aa9ba5.ngrok.io/ProductService.svc/json/DeleteProductMedia/'+productMediaId) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError);  
   }
 
   AddProductMedia(formdata:FormData){
-    return this.http.post('http://localhost:55148/ProductService.svc/json/AddProductMedia',formdata) 
+    return this.http.post('https://62aa9ba5.ngrok.io/ProductService.svc/json/AddProductMedia',formdata) 
     .map((response: Response) => {  
       return response;                 
   }).catch(this.handleError);  
   }
 
   GetAllProducts(){
-    return this.http.get('http://localhost:55148/ProductService.svc/json/GetAllProducts') 
+    return this.http.get('https://62aa9ba5.ngrok.io/ProductService.svc/json/GetAllProducts') 
             .map((response: Response) => {  
               return response;                 
           }).catch(this.handleError);  
   }
 
   UpdateProduct(updateProductRequest:UpdateProductRequest){
-    return this.http.post('http://localhost:55148/ProductService.svc/json/UpdateProduct',updateProductRequest) 
+    return this.http.post('https://62aa9ba5.ngrok.io/ProductService.svc/json/UpdateProduct',updateProductRequest) 
     .map((response: Response) => {  
       return response;                 
    }).catch(this.handleError);  
