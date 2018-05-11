@@ -16,6 +16,8 @@ export class CatergoryComponent implements OnInit {
   catergory:Catergory;
   display:string;
   AddCatergoryBtnText:String;
+  c :any;
+  public search:any;
   constructor(private alertService: AlertService,private spinnerService: Ng4LoadingSpinnerService,private catergoryService:CatergoryService) { }
 
   ngOnInit() {
