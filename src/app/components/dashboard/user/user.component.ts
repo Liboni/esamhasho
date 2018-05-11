@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
       this.spinnerService.hide();     
   }
 
-  updateUserDetails(aboutMe,address,city,country,firstName,lastName,gender,email,phonenumber){
+  updateUserDetails(aboutMe,address,city,country,firstName,lastName,email,phonenumber){
     this.spinnerService.show();
     const formData = new FormData();   
     formData.append("media", this.filesInput.nativeElement.files[0]);
