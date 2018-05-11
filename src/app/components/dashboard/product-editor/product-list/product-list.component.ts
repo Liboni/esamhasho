@@ -18,6 +18,8 @@ export class ProductListComponent implements OnInit {
   products:Product[];
   product:Product;
   catergoryList:Catergory[];
+  p :any;
+  public search:any;
   @ViewChild('filesInput') filesInput;
   constructor(private alertService: AlertService,private productService:ProductService, private catergoryService:CatergoryService,private spinnerService: Ng4LoadingSpinnerService) { 
   }

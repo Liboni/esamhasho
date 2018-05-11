@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
   products:Product[];
   productsFeature:Product[];
   product:Product;
-
+  p :any;
+  public search:any;
   searchProductRequest:SearchProductRequest;
 
   constructor(private productService:ProductService,private catergoryService:CatergoryService) {

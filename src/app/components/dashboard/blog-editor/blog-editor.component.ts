@@ -15,7 +15,8 @@ export class BlogEditorComponent implements OnInit {
   blog:Blog;
   display:string;
   AddBlogBtnText:String;
-
+  b :any;
+  public search:any;
   @ViewChild('filesInput') filesInput;
   constructor(private alertService: AlertService,private spinnerService: Ng4LoadingSpinnerService, private blogService:BlogService) { }
 

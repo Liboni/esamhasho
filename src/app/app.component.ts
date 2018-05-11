@@ -12,6 +12,7 @@ const TOKEN_KEY = 'AuthToken';
  })
 export class AppComponent {
  public isLoggedIn: boolean; 
+ public search:any;
   constructor(private token: TokenStorageService,private router: Router) {   
   }
   ngOnInit() {

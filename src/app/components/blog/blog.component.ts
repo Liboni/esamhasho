@@ -18,6 +18,8 @@ export class BlogComponent implements OnInit {
   blogs:Blog[];
   token:Token;
   userDetails:UserProfileDetails; 
+  b :any;
+  public search:any;
   constructor(private statisticsService:StatisticsService,private userService:UserService,private spinnerService: Ng4LoadingSpinnerService, private blogService:BlogService) {
     this.userDetails = new UserProfileDetails;
    }

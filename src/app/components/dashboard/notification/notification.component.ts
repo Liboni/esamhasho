@@ -14,6 +14,7 @@ export class NotificationComponent implements OnInit {
   notifications:Notification[];
   notification:Notification;
   unreadMessages:number;
+  public search:any;
   constructor(private alertService: AlertService,private spinnerService: Ng4LoadingSpinnerService,private notificationService:NotificationService) { }
 
   ngOnInit() {
