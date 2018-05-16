@@ -29,7 +29,7 @@
                                 <tr *ngFor="let i = index; let product of products | paginate: { itemsPerPage:5, currentPage:p } | filter:search">
                                     <td>{{i+1}}</td>
                                     <td>
-                                        <img src="{{product.MediaSource}}" alt="" />
+                                        <img src="{{product.MediaSource}}" alt="{{product.Name}}" />
                                     </td>
                                     <td>{{product.Name}}</td>
                                     <td>${{product.Price}}/ {{product.Per}}</td>

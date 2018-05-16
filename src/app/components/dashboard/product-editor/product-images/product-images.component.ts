@@ -29,25 +29,21 @@ export class ProductImagesComponent implements OnInit {
     fileInput.click();
   }
   addMedia(){
-  this.spinnerService.show();
   const formData = new FormData();   
     formData.append("media", this.filesInput.nativeElement.files[0]);
     formData.append("productId", this.route.snapshot.paramMap.get('id'));
     this.productService.AddProductMedia(formData).subscribe((result)=>{
       let productMedia =<ProductMediaResponse>result.json();      
-       this.productMedias.unshift(productMedia);
-       this.spinnerService.hide();       
+       this.productMedias.unshift(productMedia);    
    });
 }
 
   deleteMedia(media){
-    this.spinnerService.show();
     this.productService.DeleteProductMedia(media.Id).subscribe((result)=>{
       let actionResult =<ActionResult>result.json();
        if(actionResult.Success){
        const index: number = this.productMedias.indexOf(media);
        this.productMedias.splice(index,1)
-       this.spinnerService.hide();
        }
        else{
         this.alertService.create(

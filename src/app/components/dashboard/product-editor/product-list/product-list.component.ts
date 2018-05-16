@@ -61,7 +61,6 @@ toggleAddProduct(AddProductBtnText){
     isMain:Boolean,
     IsActive:Boolean
   ){
-    this.spinnerService.show();
     this.closepopup();
     const formData = new FormData();   
     formData.append("media", this.filesInput.nativeElement.files[0]);
@@ -101,17 +100,14 @@ toggleAddProduct(AddProductBtnText){
             IsActive:IsActive
          }
          this.products.unshift(this.product);
-         this.spinnerService.hide();
     });     
   }
-  deleteProduct(product){  
-    this.spinnerService.show();  
+  deleteProduct(product){   
     this.productService.DeleteProduct(product.ProductId).subscribe((result)=>{
        let actionResult =<ActionResult>result.json();
        if(actionResult.Success){
        const index: number = this.products.indexOf(product);
        this.products.splice(index,1)
-       this.spinnerService.hide();
        }
        else{
         this.alertService.create(

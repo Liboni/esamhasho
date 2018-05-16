@@ -45,18 +45,14 @@ export class CatergoryComponent implements OnInit {
   }
 
   deleteCatergory(catergory){
-    this.spinnerService.show();
     this.catergoryService.DeleteCatergory(catergory.Id).subscribe((catergories)=>{
-      this.spinnerService.hide();
       const index: number = this.catergories.indexOf(catergory);
       this.catergories.splice(index,1);     
    });
   }
 
   addCatergory(catergoryName){
-    this.spinnerService.show();
     this.catergoryService.AddCatergory(catergoryName).subscribe((result)=>{
-      this.spinnerService.hide();  
       let actionResult = <ActionResult>result.json(); 
       this.AddCatergoryBtnText= "Add";
       this.display="none";    

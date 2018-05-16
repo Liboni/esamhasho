@@ -34,7 +34,6 @@ export class ProductDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.spinnerService.show();
     this.productId = this.route.snapshot.paramMap.get('id');
     this.productService.GetProduct(this.productId).subscribe((products)=>{
       this.product = <Product>products.json(); 
@@ -49,10 +48,8 @@ export class ProductDetailsComponent implements OnInit {
               if(this.token.Name==null){
                 this.statisticsService.AddProductViewer(this.productId);             
                }              
-            });    
-           this.spinnerService.hide();        
+            });          
           });
-        this.spinnerService.hide();
       });
    }); 
   }

@@ -1,6 +1,6 @@
   hr {
     border-color: #F1EAE0; }
-  
+
   .wrapper {
     position: relative;
     top: 0;
@@ -14,6 +14,7 @@
     z-index: 1;
     background-size: cover;
     background-position: center center; }
+
     .sidebar a {
     color: #797774; 
     margin: 0;
@@ -42,6 +43,7 @@ text-align: center;
       width: 260px;
       z-index: 4;
       box-shadow: inset -1px 0px 0px 0px #DDDDDD; }
+
     .sidebar .sidebar-background {
       position: absolute;
       z-index: 1;
@@ -69,6 +71,13 @@ text-align: center;
     float: right;
     width: calc(100% - 260px);
     min-height: 100%; }
+
+    .main-panel-toggle {
+      background-color: #f4f3ef;
+      position: relative;
+      z-index: 2;
+      min-height: 100%; }
+
     .main-panel > .content {
       padding: 30px 15px;
       }
@@ -134,7 +143,7 @@ text-align: center;
       display: none !important; }
  }
   /*          Changes for small display      */
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     .sidebar {
       display: none; }
   
@@ -204,21 +213,10 @@ text-align: center;
       -ms-transform: translate3d(-230px, 0, 0);
       transform: translate3d(-230px, 0, 0); }
   
-    .navbar-toggle .icon-bar {
-      display: block;
-      position: relative;
-      background: #fff;
-      width: 24px;
-      height: 2px;
-      border-radius: 1px;
-      margin: 0 auto; }
-  
-    .navbar-header .navbar-toggle {
-      margin: 10px 15px 10px 0;
-      width: 40px;
-      height: 40px; }
-  
-     
+   
+      .navbar-toggle .icon-bar {
+         background-color: #fff;
+     }
     .dropdown-menu .divider {
       background-color: rgba(229, 229, 229, 0.15); }
   
@@ -227,13 +225,7 @@ text-align: center;
 
   
     .navbar-fixed-top {
-      -webkit-backface-visibility: hidden; }
-
-  
- 
-  
-    .navbar-toggle:hover, .navbar-toggle:focus {
-      background-color: transparent !important; }
+      backface-visibility: hidden; }
   
     .btn.dropdown-toggle {
       margin-bottom: 0; }
@@ -247,9 +239,11 @@ text-align: center;
   
     .navbar-collapse.collapse.in {
       display: block; }
-  
-    .navbar-header .collapse, .navbar-toggle {
-      display: block !important; }
+.navbar-toggle{
+  float: left;
+  margin-top: -40px;
+  margin-left: 15px;
+}
   
     .navbar-header {
       float: none; }

@@ -142,7 +142,8 @@ text-align: center;
     .card .title {
       margin: 0;
       color: #252422;
-      font-weight: 300; }
+      font-weight: 300;
+      font-size: 4vmin; }
     .card .avatar {
       width: 50px;
       height: 50px;
@@ -185,7 +186,7 @@ text-align: center;
       height: 245px; }   
    
     .card .numbers {
-      font-size: 2em;
+      font-size: 2.5vmin;
       text-align: right; }
       .card .numbers p {
         margin: 0; }
@@ -412,7 +413,7 @@ text-align: center;
 }
 
 .icon-big .fa{
-  font-size: 60px;
+  font-size: 8vmin;
 }
 .icon-big .fa-users{
   color: #46b375;

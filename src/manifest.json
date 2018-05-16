@@ -1,0 +1,16 @@
+{
+    "short_name":"E-Samhasho",
+    "name": "E-Samhasho market",
+    "start_url":"/",
+    "theme_color":"#359921",
+    "background_color":"#ffffff",
+    "display":"standalone",
+    "orientation":"portrait",
+    "icons": [
+        {
+            "src": "assets/images/icons/android-chrome-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="navbar-header">          
+        <div class="navbar-header">
             <a class="navbar-brand" href="javascript:void(0)">Notifications</a>
-        </div>       
+        </div>
     </div>
 </nav>
 
@@ -15,160 +15,165 @@
                         Mail
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">                      
+                    <ul class="dropdown-menu" role="menu">
                         <li>
                             <a href="javascript:void(0)">Contacts</a>
-                        </li>                       
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-3 col-md-2">                 
+            <div class="col-sm-3 col-md-2">
                 <div class="search_box pull-right">
-                    <input type="text" [(ngModel)]="search" placeholder="Search"/>
-                </div>                                               
+                    <input type="text" [(ngModel)]="search" placeholder="Search" />
+                </div>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-3 col-md-2">             
+            <div class="col-sm-3 col-md-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li  class="active">
-                        <a href="#inbox"  data-toggle="tab">
+                    <li class="active">
+                        <a href="#inbox" data-toggle="tab">
                             <span *ngIf='unreadMessages > 0' class="badge pull-right">{{unreadMessages}}</span> Inbox </a>
-                    </li>  
+                    </li>
                     <li>
-                        <a href="#sent"  data-toggle="tab">
+                        <a href="#sent" data-toggle="tab">
                             <span class="badge pull-right"></span> Sent </a>
-                    </li>                   
+                    </li>
                 </ul>
             </div>
             <div class="tab-content">
-            <div id="inbox" class=" tab-pane fade in active col-sm-9 col-md-10">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#primaryInbox" data-toggle="tab">
-                            <span class="fa fa-inbox">
-                            </span>Primary</a>
-                    </li>
-                    <li>
-                        <a href="#feedbackInbox" data-toggle="tab">
-                            <span class="fa fa-tags"></span>
-                            Feedback</a>
-                    </li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="primaryInbox">
-                        <div class="list-group">
-                           <ng-container let i; *ngFor="let notification of notifications  | filter:search" >
-                            <a (click)="markAsRead(notification.Id)" *ngIf="notification.NotificationTypeId == 1 &&  notification.FromCustomer" href="javascript:void(0)" [class.read]="notification.IsRead" class="list-group-item">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
-                                <span class="fa fa-star-empty"></span>
-                                <span class="name" style="min-width: 120px;
-                                    display: inline-block;">{{notification.Name}}</span>
-                                <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
-                                <span class="badge">{{notification.DateCreated}}</span>
-                                <span class="pull-right">
-                                    <span class="fa fa-paperclip">
-                                    </span>
-                                </span>                           
-                            </a> 
-                        </ng-container>                                             
+                <div id="inbox" class=" tab-pane fade in active col-sm-9 col-md-10">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#primaryInbox" data-toggle="tab">
+                                <span class="fa fa-inbox">
+                                </span>Primary</a>
+                        </li>
+                        <li>
+                            <a href="#feedbackInbox" data-toggle="tab">
+                                <span class="fa fa-tags"></span>
+                                Feedback</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="primaryInbox">
+                            <div class="list-group">
+                                <ng-container let i; *ngFor="let notification of primaryNotification | paginate: { itemsPerPage:5, currentPage:primaryNotificationItemsPerPage } | filter:search">
+                                    <a (click)="markAsRead(notification.Id)" href="javascript:void(0)"
+                                        [class.read]="notification.IsRead" class="list-group-item">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                            </label>
+                                        </div>
+                                        <span class="fa fa-star-empty"></span>
+                                        <span class="name" style="min-width: 120px; display: inline-block;">{{notification.Name}}</span>
+                                        <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                        <span class="badge">{{notification.DateCreated}}</span>
+                                    </a>
+                                </ng-container>
+                            </div>                           
+                            <pagination-controls (pageChange)="primaryNotificationItemsPerPage=$event"></pagination-controls>
+                        </div>
+                        <div class="tab-pane fade in" id="feedbackInbox">
+                            <div class="list-group">
+                                <ng-container *ngFor="let notification of feedbackNotification | paginate: { itemsPerPage:5, currentPage:feedbackNotificationItemsPerPage } | filter:search">
+                                    <a (click)="markAsRead(notification.Id)" href="javascript:void(0)"
+                                        class="list-group-item" href="javascript:void(0)" [class.read]="notification.IsRead"
+                                        class="list-group-item">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                            </label>
+                                        </div>
+                                        <span class="fa fa-star"></span>
+                                        <span class="name" style="min-width: 120px;
+                                                        display: inline-block;">{{notification.Name}}</span>
+                                        <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                        <span class="badge">{{notification.DateCreated}}</span>
+                                        <span class="pull-right">
+                                            <span class="fa fa-paperclip">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </ng-container>
+                            </div>
+                            <pagination-controls (pageChange)="feedbackNotificationItemsPerPage=$event"></pagination-controls>
                         </div>
                     </div>
-                    <div class="tab-pane fade in" id="feedbackInbox">
-                        <div class="list-group">
-                          <ng-container *ngFor="let notification of notifications  | filter:search" >
-                            <a  *ngIf="notification.NotificationTypeId == 2 &&  notification.FromCustomer" (click)="markAsRead(notification.Id)" href="javascript:void(0)" class="list-group-item" href="javascript:void(0)"  [class.read]="notification.IsRead" class="list-group-item">
-                               <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">
-                                        </label>
-                                    </div>
-                                    <span class="fa fa-star"></span>
-                                    <span class="name" style="min-width: 120px;
-                                                        display: inline-block;">{{notification.Name}}</span>                                 
-                                    <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
-                                    <span class="badge">{{notification.DateCreated}}</span>
-                                    <span class="pull-right">
-                                        <span class="fa fa-paperclip">
-                                        </span>
-                                    </span>                                   
-                                </a>
-                            </ng-container>
-                            </div>                        
-                    </div>                  
                 </div>
-            </div>
 
-            <div id="sent" class=" tab-pane fade in col-sm-9 col-md-10" >
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#primarySent" data-toggle="tab">
-                            <span class="fa fa-inbox">
-                            </span>Primary</a>
-                    </li>
-                    <li>
-                        <a href="#feedbackSent" data-toggle="tab">
-                            <span class="fa fa-tags"></span>
-                            Feedback</a>
-                    </li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="primarySent">
-                        <div class="list-group">
-                           <ng-container let i; *ngFor="let notification of notifications  | filter:search" >
-                            <a (click)="markAsRead(notification.Id)" *ngIf="notification.NotificationTypeId == 1 &&  !notification.FromCustomer" href="javascript:void(0)" [class.read]="notification.IsRead" class="list-group-item">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
-                                <span class="fa fa-star-empty"></span>
-                                <span class="name" style="min-width: 120px;
+                <div id="sent" class=" tab-pane fade in col-sm-9 col-md-10">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#primarySent" data-toggle="tab">
+                                <span class="fa fa-inbox">
+                                </span>Primary</a>
+                        </li>
+                        <li>
+                            <a href="#feedbackSent" data-toggle="tab">
+                                <span class="fa fa-tags"></span>
+                                Feedback</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="primarySent">
+                            <div class="list-group">
+                                <ng-container let i; *ngFor="let notification of primaryReplyNotification  | paginate: { itemsPerPage:5, currentPage:primaryReplyNotificationItemsPerPage } | filter:search">
+                                    <a (click)="markAsRead(notification.Id)"  href="javascript:void(0)"
+                                        [class.read]="notification.IsRead" class="list-group-item">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                            </label>
+                                        </div>
+                                        <span class="fa fa-star-empty"></span>
+                                        <span class="name" style="min-width: 120px;
                                     display: inline-block;">{{notification.Name}}</span>
-                                <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
-                                <span class="badge">{{notification.DateCreated}}</span>
-                                <span class="pull-right">
-                                    <span class="fa fa-paperclip">
-                                    </span>
-                                </span>                           
-                            </a> 
-                        </ng-container>                                             
+                                        <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                        <span class="badge">{{notification.DateCreated}}</span>
+                                        <span class="pull-right">
+                                            <span class="fa fa-paperclip">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </ng-container>
+                            </div>
+                            <pagination-controls (pageChange)="primaryReplyNotificationItemsPerPage=$event"></pagination-controls>
+                        </div>
+                        <div class="tab-pane fade in" id="feedbackSent">
+                            <div class="list-group">
+                                <ng-container *ngFor="let notification of feedbackReplyNotification | paginate: { itemsPerPage:5, currentPage:feedbackReplyNotificationItemsPerPage } | filter:search">
+                                    <a  (click)="markAsRead(notification.Id)" href="javascript:void(0)"
+                                        class="list-group-item" href="javascript:void(0)" [class.read]="notification.IsRead"
+                                        class="list-group-item">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox">
+                                            </label>
+                                        </div>
+                                        <span class="fa fa-star"></span>
+                                        <span class="name" style="min-width: 120px;
+                                                        display: inline-block;">{{notification.Name}}</span>
+                                        <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
+                                        <span class="badge">{{notification.DateCreated}}</span>
+                                        <span class="pull-right">
+                                            <span class="fa fa-paperclip">
+                                            </span>
+                                        </span>
+                                    </a>
+                                </ng-container>
+                            </div>
+                            <pagination-controls (pageChange)="feedbackReplyNotificationItemsPerPage=$event"></pagination-controls>
                         </div>
                     </div>
-                    <div class="tab-pane fade in" id="feedbackSent">
-                        <div class="list-group">
-                          <ng-container *ngFor="let notification of notifications  | filter:search" >
-                            <a  *ngIf="notification.NotificationTypeId == 2 &&  !notification.FromCustomer" (click)="markAsRead(notification.Id)" href="javascript:void(0)" class="list-group-item" href="javascript:void(0)"  [class.read]="notification.IsRead" class="list-group-item">
-                               <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">
-                                        </label>
-                                    </div>
-                                    <span class="fa fa-star"></span>
-                                    <span class="name" style="min-width: 120px;
-                                                        display: inline-block;">{{notification.Name}}</span>                                 
-                                    <span class="text-muted" style="font-size: 11px;">{{notification.Message}}</span>
-                                    <span class="badge">{{notification.DateCreated}}</span>
-                                    <span class="pull-right">
-                                        <span class="fa fa-paperclip">
-                                        </span>
-                                    </span>                                   
-                                </a>
-                            </ng-container>
-                            </div>                        
-                    </div>                  
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>

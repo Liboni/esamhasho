@@ -23,15 +23,12 @@ export class ProductEditDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.spinnerService.show();
     this.productId = this.route.snapshot.paramMap.get('id');
     this.productService.GetProduct(this.productId).subscribe((products)=>{
-      this.product = <Product>products.json();     
-      this.spinnerService.hide();
+      this.product = <Product>products.json();    
    });
    this.catergoryService.GetAllCatergories().subscribe((catergories)=>{
     this.catergoryList = <Catergory[]>catergories.json();
-    this.spinnerService.hide();
    });
   }
 

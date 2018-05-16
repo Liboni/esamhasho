@@ -11,7 +11,7 @@
                             <ul class="slides">
                                 <ng-container *ngFor="let media of productMedias">
                                     <li [class.slideInImage]="selectedImage == media.Id">
-                                        <img src="{{media.MediaSource}}" alt="" />
+                                        <img src="{{media.MediaSource}}" alt="{{product.Name}}" />
                                     </li>
                                 </ng-container>
                             </ul>
@@ -19,7 +19,7 @@
                                 <ng-container *ngFor="let media of productMedias">
                                     <li>
                                         <a (click)="selectImage(media.Id)">
-                                            <img src="{{media.MediaSource}}" />
+                                            <img src="{{media.MediaSource}}" alt="{{product.Name}}" />
                                         </a>
                                     </li>
                                 </ng-container>

@@ -28,7 +28,7 @@ export class ContactComponent implements OnInit {
       Phone:phone,
       Name:name, 
       ProductId: 0,
-      NotificationTypeId:1,
+      NotificationTypeId:2,
       Id:0
     }
      this.notificationService.AddNotification(notification).subscribe((result)=>{

@@ -24,16 +24,13 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.spinnerService.show();
     this.token = { Name:localStorage.getItem(TOKEN_KEY)  }
     this.userService.GetUserDetails(this.token).subscribe((result)=>{ 
        this.userDetails=<UserProfileDetails>result.json();    
-      });
-      this.spinnerService.hide();     
+      }); 
   }
 
   updateUserDetails(aboutMe,address,city,country,firstName,lastName,email,phonenumber){
-    this.spinnerService.show();
     const formData = new FormData();   
     formData.append("media", this.filesInput.nativeElement.files[0]);
     formData.append("token", localStorage.getItem(TOKEN_KEY));
@@ -63,7 +60,6 @@ export class UserComponent implements OnInit {
         "Failed to save user details, try again" 
         );     
      }
-      this.spinnerService.hide();
       });
   }
 

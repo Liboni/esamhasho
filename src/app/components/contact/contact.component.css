@@ -2,7 +2,7 @@
     position: relative;
     margin: 0 auto;
     background: #F0F0E9;
-    width: 85vmin;
+    width: 95vmin;
     border-radius: 5px;
     box-shadow: 3px 3px 10px #333;
     padding: 15px;
@@ -30,7 +30,7 @@
     height: 40px;
     border-radius: 5px;
     outline: 0;
-    -moz-outline-style: none;
+    outline-style: none;
   }
   .contact-wrap .form input[type="text"],
   .contact-wrap .form input[type="password"],

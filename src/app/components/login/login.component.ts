@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(userName,password){
-    this.spinnerService.show();
     this.signInUser = {
       Password:password,
       RememberMe:true,
@@ -31,11 +30,11 @@ export class LoginComponent implements OnInit {
     }
     this.authenticationService.SignIn(this.signInUser).subscribe((results)=>{
       this.actionResult= <ActionResult>results.json();
-      this.spinnerService.hide();
       if(this.actionResult.Success){   
-        this.router.navigate(['dashboard/statistics']);
         this.token.saveToken(this.actionResult.Message);
         this.appComponent.isLoggedIn = true;
+       // this.router.navigate(['dashboard/statistics']); 
+       window.location.href = "https://7f3a7e20.ngrok.io/dashboard/statistics"
         }     
         else{
           this.alertService.create(

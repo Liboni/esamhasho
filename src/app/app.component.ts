@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private token: TokenStorageService,private router: Router) {   
   }
   ngOnInit() {
-    this.isLoggedIn = localStorage.getItem(TOKEN_KEY)?true:false;
+    this.isLoggedIn =localStorage.getItem(TOKEN_KEY)?true:false;
   }
 
   logout(){

@@ -1,10 +1,32 @@
 <div class="contact-wrap">
-    <h2>Contact Us</h2>        
-    <div class="form">
-      <input ngModel  #name="ngModel" type="text" placeholder="Username" name="un" />
-      <input  ngModel #email="ngModel"  type="email" placeholder="email" name="pw" />
-      <input ngModel #phone="ngModel" type="number" placeholder="phone" name="un" />
-      <textarea  ngModel #message="ngModel" type="text" placeholder="message"  ></textarea>
-      <button (click)="comment(message.value,phone.value,name.value,email.value)"> Submit</button>       
+  <h2>Contact Us</h2>
+  <div class="form">
+    <div class="row">
+      <div class="col-md-2">
+        <label for="name">Username</label>
+      </div>
+      <div class="col-md-10">
+        <input ngModel #name="ngModel" type="text" placeholder="Username" name="name" />
+      </div>
+      <div class="col-md-2">
+        <label for="email">Email</label>
+      </div>
+      <div class="col-md-10">
+        <input ngModel #email="ngModel" type="email" placeholder="email" name="email" />
+      </div>
+      <div class="col-md-2">
+        <label for="phone">Phone</label>
+      </div>
+      <div class="col-md-10">
+        <input ngModel #phone="ngModel" type="number" placeholder="phone" name="phone" />
+      </div>
+      <div class="col-md-2">
+        <label for="message">Message</label>
+      </div>
+      <div class="col-md-10">
+        <textarea ngModel #message="ngModel" type="text" placeholder="message"></textarea>
+      </div>
+      <button (click)="comment(message.value,phone.value,name.value,email.value)"> Submit</button>
     </div>
+  </div>
 </div>

@@ -45,7 +45,7 @@
                                 <tbody>
                                     <tr *ngFor="let i = index; let item of blogs | paginate: { itemsPerPage:5, currentPage:b } | filter:search">
                                       <td>{{i+1}}</td>
-                                      <td><img src="{{item.MediaUrl}}" alt="" /></td>
+                                      <td><img src="{{item.MediaUrl}}" alt="{{item.Name}}" /></td>
                                       <td>{{item.Name}}</td>                                     
                                       <td>{{item.DateCreated}}</td>
                                       <td>

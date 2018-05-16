@@ -13,13 +13,27 @@ import { AlertService } from '../../../services/alert.service';
 export class NotificationComponent implements OnInit {
   notifications:Notification[];
   notification:Notification;
-  unreadMessages:number;
+  public unreadMessages:number;
   public search:any;
+  
+  primaryNotification:any;
+  feedbackNotification:any;
+  feedbackReplyNotification:any;
+  primaryReplyNotification:any;
+
+  primaryNotificationItemsPerPage:any
+  feedbackNotificationItemsPerPage:any
+  feedbackReplyNotificationItemsPerPage:any
+  primaryReplyNotificationItemsPerPage:any
   constructor(private alertService: AlertService,private spinnerService: Ng4LoadingSpinnerService,private notificationService:NotificationService) { }
 
   ngOnInit() {
     this.notificationService.GetAllNotifications().subscribe((notifications)=>{ 
       this.notifications = <Notification[]>notifications.json();
+       this.primaryNotification = this.notifications.filter(res => res.NotificationTypeId ==1 && res.FromCustomer);
+       this.feedbackNotification = this.notifications.filter(res => res.NotificationTypeId ==2 && res.FromCustomer);
+       this.primaryReplyNotification = this.notifications.filter(res => res.NotificationTypeId ==1 && !res.FromCustomer);
+       this.feedbackReplyNotification = this.notifications.filter(res => res.NotificationTypeId ==2 && !res.FromCustomer);
       this.unreadMessages=0;
       for (let notification of this.notifications) {
       if(notification.FromCustomer&& !notification.IsRead){

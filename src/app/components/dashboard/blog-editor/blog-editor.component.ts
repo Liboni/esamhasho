@@ -45,16 +45,13 @@ export class BlogEditorComponent implements OnInit {
   }
 
   deleteBlog(blog){
-    this.spinnerService.show();
     this.blogService.DeleteBlog(blog.Id).subscribe((catergories)=>{
       const index: number = this.blogs.indexOf(blog);
       this.blogs.splice(index,1)
-      this.spinnerService.hide();
    });
   }
 
   addBlog(name,description,titleDescription){
-    this.spinnerService.show();
     const formData = new FormData();   
     formData.append("media", this.filesInput.nativeElement.files[0]);
     formData.append("name", name);
@@ -75,8 +72,7 @@ export class BlogEditorComponent implements OnInit {
             "Failed to save blog, try again." 
             );           
          }          
-   });
-   this.spinnerService.hide();   
+   }); 
   }
 
   ViewBlog(blogId){

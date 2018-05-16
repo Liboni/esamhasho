@@ -139,14 +139,14 @@ list-style-type: none;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
+    box-orient: horizontal;
+    box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: row;
     line-height: 24px;
     overflow-x: auto;
     width: 60vmin;
-    margin-top: 23em;
+    margin-top: 30em;
 }
 .thumbnails img {
   width: 40vmin;

@@ -25,16 +25,14 @@ export class BlogComponent implements OnInit {
    }
 
   ngOnInit() { 
-    this.spinnerService.show();
-    this.blogService.GetBlogs().subscribe((blogs)=>{  
-      this.blogs = <Blog[]>blogs.json();    
+   this.blogService.GetBlogs().subscribe((blogs)=>{  
+      this.blogs = <Blog[]>blogs.json();  
    });
 
    this.token = { Name:localStorage.getItem(TOKEN_KEY)  }
    this.userService.GetUserDetails(this.token).subscribe((result)=>{ 
-      this.userDetails=<UserProfileDetails>result.json();          
+      this.userDetails=<UserProfileDetails>result.json();       
      });
-     this.spinnerService.hide();   
   }
 
   saveViewer(blogId){

@@ -41,13 +41,13 @@ export class HomeComponent implements OnInit {
   
 
   loadProducts(catergoryId){
-    this.catergoryId=catergoryId;
+    this.catergoryId=catergoryId; 
     this.searchProductRequest = {
       Catergory :this.catergoryId,
       Search:""
-  }
-  this.productService.SearchProduct(this.searchProductRequest).subscribe((products)=>{
-    this.productsFeature= <Product[]>products.json();
+  }      
+  this.productService.SearchProduct(this.searchProductRequest).subscribe((product)=>{
+     this.productsFeature = <Product[]>product.json();
    });
   }
 }

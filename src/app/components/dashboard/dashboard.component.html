@@ -1,13 +1,14 @@
-<div class="wrapper">      
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
-            <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar bar1"></span>
-                    <span class="icon-bar bar2"></span>
-                    <span class="icon-bar bar3"></span>
+
+<div class="wrapper">
+        <button class="navbar-toggle" type="button" (click)="toggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-    	<div class="sidebar-wrapper">
-            <ul class="nav">
+    <div class="sidebar" [style.display]="displaySideBar" data-background-color="white" data-active-color="danger">
+        <div class="sidebar-wrapper">
+            <ul (click)="sidebar()" class="nav">
                 <li routerLinkActive="active">
                     <a [routerLink]="['/dashboard/statistics']">
                         <i class="fa fa-dashboard"></i>
@@ -25,31 +26,30 @@
                         <i class="fa fa-navicon"></i>
                         <p>Product Editor</p>
                     </a>
-                </li>    
+                </li>
                 <li routerLinkActive="active">
                     <a [routerLink]="['/dashboard/catergory']">
                         <i class="fa fa-filter"></i>
                         <p>Product Catergory</p>
                     </a>
-                </li>             
+                </li>
                 <li routerLinkActive="active">
                     <a [routerLink]="['/dashboard/blog-editor']">
                         <i class="fa fa-list"></i>
                         <p>Blog Editor</p>
                     </a>
-                </li>               
+                </li>
                 <li routerLinkActive="active">
                     <a [routerLink]="['/dashboard/notification']">
                         <i class="fa fa-bell"></i>
-                        <p>Notifications</p>
+                        <p>Notifications </p>
                     </a>
-                </li>			
+                </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
-    <div class="main-panel">
+    <div [style.display]="displayMainPanel" class="main-panel">
         <router-outlet></router-outlet>
     </div>
 </div>
-

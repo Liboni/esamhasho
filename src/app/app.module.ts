@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {  HttpModule } from '@angular/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ProductService } from './services/product.service';
@@ -37,8 +38,7 @@ import { AuthGuard } from './guard/auth.guard'
 import { TokenStorageService } from './core/token-storage.service';
 import { StatisticsService } from './services/statistics.service';
 import { AlertModule } from './module/alert/alert.module';
-
-
+import { Connection } from './services/connection';
 
 const appRoutes:Routes= [
   {path:'', component:HomeComponent},
@@ -104,7 +104,8 @@ const appRoutes:Routes= [
     CatergoryService, 
     TokenStorageService,
     UserService,
-    StatisticsService
+    StatisticsService,
+    Connection
   ],
   bootstrap: [AppComponent]
 })
