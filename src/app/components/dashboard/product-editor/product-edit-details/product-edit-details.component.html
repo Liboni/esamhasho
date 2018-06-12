@@ -48,7 +48,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                       <label for="catergory">Catergory</label>
-                      <select ngModel [(ngModel)] = "product.CatergoryId"id="catergory" #catergory="ngModel" class="select" required name="catergory">
+                      <select ngModel [(ngModel)] = "product.CatergoryId" id="catergory" #catergory="ngModel" class="select" required name="catergory">
                         <option value="" class="option">---Select product caterory---</option>
                         <option *ngFor="let item of catergoryList;" value="{{item.Id}}" class="option">
                             {{item.Name}}

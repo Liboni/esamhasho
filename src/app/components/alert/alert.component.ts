@@ -40,7 +40,7 @@ export class AlertComponent implements OnInit {
       if(this.type == "danger"){
         this.backColor = "#dc3545";
       }
-      if(this.type == "infor"){
+      if(this.type == "info"){
         this.backColor = "#117a8b";
       }
       if(this.type == "success"){

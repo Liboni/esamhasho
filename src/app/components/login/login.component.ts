@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
       if(this.actionResult.Success){   
         this.token.saveToken(this.actionResult.Message);
         this.appComponent.isLoggedIn = true;
-       // this.router.navigate(['dashboard/statistics']); 
-       window.location.href = "https://7f3a7e20.ngrok.io/dashboard/statistics"
+       this.router.navigate(['dashboard/statistics']); 
         }     
         else{
           this.alertService.create(

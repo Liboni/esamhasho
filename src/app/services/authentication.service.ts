@@ -11,8 +11,7 @@ export class AuthenticationService {
   constructor(public http:Http,  private router: Router) {
   }
 
-  SignIn(signInUser:SignInUser){
-    
+  SignIn(signInUser:SignInUser){    
     return this.http.post(Connection.serveUrl+'AuthenticationService.svc/json/SignIn',signInUser) 
     .map((response: Response) => {       
       return response;                 

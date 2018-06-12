@@ -3,6 +3,7 @@
         <div class="form">
           <input ngModel #userName="ngModel" type="text" placeholder="Username" name="userName" />
           <input ngModel #password="ngModel"  type="password" placeholder="Password" name="password" />
-          <button (click)="login(userName.value,password.value)"> Sign in </button>       
+          <button (click)="login(userName.value,password.value)"> Sign in </button>  
+           <a [routerLink]="['/forgot-password']">Forgot Password ?</a>     
         </div>
 </div> 

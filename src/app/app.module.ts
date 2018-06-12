@@ -39,16 +39,20 @@ import { TokenStorageService } from './core/token-storage.service';
 import { StatisticsService } from './services/statistics.service';
 import { AlertModule } from './module/alert/alert.module';
 import { Connection } from './services/connection';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './components/dashboard/change-password/change-password.component';
 
 const appRoutes:Routes= [
   {path:'', component:HomeComponent},
   {path:'blog', component:BlogComponent},
   {path:'login', component:LoginComponent},
   {path:'product-details/:id', component:ProductDetailsComponent},
+  {path:'forgot-password', component:ForgotPasswordComponent},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard],
     children:[   
         {path:'statistics', component:StatisticsComponent},
         {path:'user', component:UserComponent},
+        {path:'change-password', component:ChangePasswordComponent},
         {path:'blog-editor', component:BlogEditorComponent},
         {path:'catergory', component:CatergoryComponent},
         {path:'product-editor', 
@@ -82,7 +86,9 @@ const appRoutes:Routes= [
     CatergoryComponent,
     ProductImagesComponent,
     ProductListComponent,
-    ProductEditDetailsComponent
+    ProductEditDetailsComponent,
+    ChangePasswordComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     Ng4LoadingSpinnerModule.forRoot(),
