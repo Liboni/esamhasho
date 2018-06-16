@@ -17,13 +17,7 @@ ul li {
   -webkit-transition: all 1.0s ease;
   transition: all 1.0s ease;
 }
-.fixed-header {
-    position: fixed;
-    margin-top: -125px;
-    z-index: 99999;
-    background-color: #F0F0E9;
-    width: 100%;
-}
+
 .logo a{
   font-size: x-large;
   color: #b4b1ab;

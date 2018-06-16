@@ -11,40 +11,43 @@
   justify-content: center;
 }
 .thumbnails {
-  display: flex;
-  flex-direction: column;
-  line-height: 0;
-  overflow-y: auto;
-  height: calc(100vh - 14em);
+  display: block;
 }
-.thumbnails li {
+.thumbnails li {  
+  margin-bottom: 5px;
   flex: auto;
 }
 .thumbnails a {
   display: block;
 }
 .thumbnails img {
-  width: 40vmin;
+  width: 10em;
+  height: 10em !important;
   height: auto;
+  cursor: pointer;
   object-fit: cover;
   object-position: top;
-  float: right;
+ 
+}
+.thumbnails img:hover{
   box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
 }
+.product-image-wrapper:hover{
+  box-shadow:0em;
+}  
 .slides {
   overflow: hidden;
 }
 .slides li {
-  position: absolute;
   z-index: 1;
   display: none;
 }
 
 .slides img {
-  height: calc(100vh - 15em);
+  height: 100%;
   object-fit: cover;
   object-position: top;
-  max-width: 85vmin;
+  width: 100%;
 }
 .slideInImage{
     display: block !important;
@@ -67,7 +70,6 @@
 
 
 #container {
-  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 9999;
   position: fixed;
   bottom: 20em;
@@ -88,7 +90,8 @@
 #heading {
   margin-bottom: 1em;
  color: #b4b1ab
-}    
+}  
+
 #close {
   color: white;
   font-family: monospace;
@@ -117,47 +120,4 @@ margin-bottom:15px;
 
 li{
 list-style-type: none;
-}
-@media (max-width:900px)  {
-  .slides img {
-    height: calc(100vh - 15em);
-    object-fit: cover;
-    object-position: top;
-    max-width: 75vmin;
-  }
-  .thumbnails img {
-    width: 20vmin;
-    height: auto;
-    object-fit: cover;
-    object-position: top;
-    float: right;
-    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
-  }
-}
-@media (max-width:600px)  {
-  .thumbnails {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    box-orient: horizontal;
-    box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: row;
-    line-height: 24px;
-    overflow-x: auto;
-    width: 60vmin;
-    margin-top: 30em;
-}
-.thumbnails img {
-  width: 40vmin;
-  -o-object-fit: cover;
-  object-fit: cover;
-  -o-object-position: top;
-  object-position: top;
-  float: right;
-  -webkit-box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
-  box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
-  height: 40vmin;
-  margin-right: 1em;
-}
 }

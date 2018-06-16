@@ -42,10 +42,7 @@ export class StatisticsService {
         ViewId: 0           
         
       } 
-      this.Post(Connection.serveUrl+'ProductService.svc/json/AddProductViewer', this.view)
-      .subscribe((data) => {
-        console.log(data);
-       });
+      this.Post(Connection.serveUrl+'ProductService.svc/json/AddProductViewer', this.view) .subscribe((data) => {  });
     });
   }
 
