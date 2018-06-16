@@ -3,6 +3,7 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
+            <h2>{{product.Name}}</h2>
             <div class="row">
                 <div class="col-md-7">
                     <ul class="slides">
@@ -12,9 +13,9 @@
                             </li>
                         </ng-container>
                     </ul>
-                    <ul class="thumbnails row">
+                    <ul class="thumbnails">
                         <ng-container *ngFor="let media of productMedias">
-                            <li class="col-md-3 col-lg-3 col-sm-3">
+                            <li>
                                 <a (click)="selectImage(media.Id)">
                                     <img src="{{media.MediaSource}}" alt="{{product.Name}}" />
                                 </a>
@@ -23,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="col-md-5">
-                    <h2>{{product.Name}}</h2>
+
                     <div class="list-details">
                         <h3>
                             <span class="fa fa-money"> Price : </span>

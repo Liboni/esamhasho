@@ -11,7 +11,14 @@
   justify-content: center;
 }
 .thumbnails {
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+h4{
+  margin-right: 20px;
+}
+h2{
+  text-align: center;
 }
 .thumbnails li {  
   margin-bottom: 5px;
@@ -66,9 +73,6 @@
 .space{
   margin-bottom: 2em;
 }
-
-
-
 #container {
   z-index: 9999;
   position: fixed;
